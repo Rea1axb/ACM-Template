@@ -21,63 +21,63 @@ x和弹出元素构成一个点双连通分量
 重边对点连通度无影响
 */
 namespace Tarjan {
-int dfn[MAXN];
-int low[MAXN];
-stack<int> stk;
-int n;//节点数
-int cnt;//双连通分量个数
-int cut[MAXN];//某个点是否是割点
-int resnum[MAXN];//某个点所属的双连通分量编号（割点的编号无效）
-vector<int> res[MAXN];//双连通分量内的点
-int times;
+    int dfn[MAXN];
+    int low[MAXN];
+    stack<int> stk;
+    int n;//节点数
+    int cnt;//双连通分量个数
+    int cut[MAXN];//某个点是否是割点
+    int resnum[MAXN];//某个点所属的双连通分量编号（割点的编号无效）
+    vector<int> res[MAXN];//双连通分量内的点
+    int times;
 
-void dfs(int u, int fa) {
-    dfn[u] = low[u] = ++times;
-    stk.push(u);
-    int child = 0;//记录子节点数量，用于判断根节点是否是割点
-    for (int i = first[u]; i != -1; i = e[i].next) {
-        int v = e[i].v;
-        if (!dfn[v]) {//树边
-            child++;
-            dfs(v, u);
-            low[u] = min(low[u], low[v]);
-            if (low[v] >= dfn[u]) {
-                cut[u] = 1;//该点为割点
-                cnt++;
-                res[cnt].clear();
-                while (stk.top() != u) {//u和弹出元素构成一个点双，注意割点不弹出
-                    int cur = stk.top();
-                    resnum[cur] = cnt;
-                    res[cnt].push_back(cur);
-                    stk.pop();
+    void dfs(int u, int fa) {
+        dfn[u] = low[u] = ++times;
+        stk.push(u);
+        int child = 0;//记录子节点数量，用于判断根节点是否是割点
+        for (int i = first[u]; i != -1; i = e[i].next) {
+            int v = e[i].v;
+            if (!dfn[v]) {//树边
+                child++;
+                dfs(v, u);
+                low[u] = min(low[u], low[v]);
+                if (low[v] >= dfn[u]) {
+                    cut[u] = 1;//该点为割点
+                    cnt++;
+                    res[cnt].clear();
+                    while (stk.top() != u) {//u和弹出元素构成一个点双，注意割点不弹出
+                        int cur = stk.top();
+                        resnum[cur] = cnt;
+                        res[cnt].push_back(cur);
+                        stk.pop();
+                    }
+                    resnum[u] = cnt;
+                    res[cnt].push_back(u);
                 }
-                resnum[u] = cnt;
-                res[cnt].push_back(u);
+            } else if (v != fa) {//回边
+                low[u] = min(low[u], dfn[v]);
             }
-        } else if (v != fa) {//回边
-            low[u] = min(low[u], dfn[v]);
+        }
+        if (fa == -1 && child == 1)
+            cut[u] = 0;//若根节点只有一个子节点，则不是割点
+    }
+
+    void init(int _n) {
+        n = _n;
+        fill(dfn, dfn + n + 1, 0);
+        fill(cut, cut + n + 1, 0);
+        fill(resnum, resnum + n + 1, 0);
+        while(!stk.empty()) stk.pop();
+        cnt = 0;
+        times = 0;
+    }
+
+    void solve() {
+        for (int i = 1; i <= n; i++) {
+            if (!dfn[i])
+                dfs(i, -1);
         }
     }
-    if (fa == -1 && child == 1)
-        cut[u] = 0;//若根节点只有一个子节点，则不是割点
-}
-
-void init(int _n) {
-    n = _n;
-    fill(dfn, dfn + n + 1, 0);
-    fill(cut, cut + n + 1, 0);
-    fill(resnum, resnum + n + 1, 0);
-    while(!stk.empty()) stk.pop();
-    cnt = 0;
-    times = 0;
-}
-
-void solve() {
-    for (int i = 1; i <= n; i++) {
-        if (!dfn[i])
-            dfs(i, -1);
-    }
-}
 };
 Tarjan::init(n);
 Tarjan::solve();

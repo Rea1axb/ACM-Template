@@ -3,5 +3,6 @@
 <树的直径> <树的直径.cpp>
 <树上倍增> <树上倍增.cpp>
 <LCA(倍增)> <LCA(倍增).cpp>
+<LCA(Tarjan)> <LCA(Tarjan).cpp>
 <树上差分> <树上差分.cpp>
 <树链剖分> <树链剖分.cpp>

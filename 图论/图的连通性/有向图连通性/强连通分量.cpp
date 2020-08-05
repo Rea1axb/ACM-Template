@@ -25,58 +25,58 @@ low[x]:记录x子树中的点能够通过回边抵达点的最小时间戳
 弹出元素构成一个强连通分量(标号为逆拓扑序)
 */
 namespace Tarjan {
-int dfn[MAXN];
-int low[MAXN];
-stack<int> stk;
-int vis[MAXN];//记录某个点是否已入栈
-int n;//节点数
-int cnt;//强连通分量个数
-int resnum[MAXN];//某个点所属的强连通分量编号
-vector<int> res[MAXN];//强连通分量内的点
-int times;
+    int dfn[MAXN];
+    int low[MAXN];
+    stack<int> stk;
+    int vis[MAXN];//记录某个点是否已入栈
+    int n;//节点数
+    int cnt;//强连通分量个数
+    int resnum[MAXN];//某个点所属的强连通分量编号
+    vector<int> res[MAXN];//强连通分量内的点
+    int times;
 
-void dfs(int u, int fa) {
-    dfn[u] = low[u] = ++times;
-    stk.push(u);
-    vis[u] = 1;
-    for (int i = first[u]; i != -1; i = e[i].next) {
-        int v = e[i].v;
-        if (!dfn[v]) {//树边
-            dfs(v, u);
-            low[u] = min(low[u], low[v]);
-        } else if (vis[v]) {
-            low[u] = min(low[u], dfn[v]);
+    void dfs(int u, int fa) {
+        dfn[u] = low[u] = ++times;
+        stk.push(u);
+        vis[u] = 1;
+        for (int i = first[u]; i != -1; i = e[i].next) {
+            int v = e[i].v;
+            if (!dfn[v]) {//树边
+                dfs(v, u);
+                low[u] = min(low[u], low[v]);
+            } else if (vis[v]) {
+                low[u] = min(low[u], dfn[v]);
+            }
+        }
+        if (low[u] == dfn[u]) {
+            cnt++;
+            while (!stk.empty()) {
+                int cur = stk.top();
+                resnum[cur] = cnt;
+                res[cnt].push_back(cur);
+                stk.pop();
+                if (cur == u) break;
+            }
         }
     }
-    if (low[u] == dfn[u]) {
-        cnt++;
-        while (!stk.empty()) {
-            int cur = stk.top();
-            resnum[cur] = cnt;
-            res[cnt].push_back(cur);
-            stk.pop();
-            if (cur == u) break;
+
+    void init(int _n) {
+        n = _n;
+        fill(dfn, dfn + n + 1, 0);
+        fill(cutedge, cutedge + n + 1, 0);
+        fill(resnum, resnum + n + 1, 0);
+        fill(vis, vis + n + 1, 0);
+        while (!stk.empty()) stk.pop();
+        cnt = 0;
+        times = 0;
+    }
+
+    void solve() {
+        for (int i = 1; i <= n; i++) {
+            if (!dfn[i])
+                dfs(i, -1);
         }
     }
-}
-
-void init(int _n) {
-    n = _n;
-    fill(dfn, dfn + n + 1, 0);
-    fill(cutedge, cutedge + n + 1, 0);
-    fill(resnum, resnum + n + 1, 0);
-    fill(vis, vis + n + 1, 0);
-    while (!stk.empty()) stk.pop();
-    cnt = 0;
-    times = 0;
-}
-
-void solve() {
-    for (int i = 1; i <= n; i++) {
-        if (!dfn[i])
-            dfs(i, -1);
-    }
-}
 };
 Tarjan::init(n);
 Tarjan::solve();
