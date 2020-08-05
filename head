@@ -17,14 +17,14 @@
 \linespread{1.2}
 
 \title{Template For ICPC}
-\author{ChenJr @ GDUT}
+\author{Rea1 @ ZJUT}
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
 \pagestyle{fancy}
 
-\lhead{\CJKfamily{kai} GuangDong University of Technology} %以下分别为左中右的页眉和页脚
+\lhead{\CJKfamily{kai} ZheJiang University of Technology} %以下分别为左中右的页眉和页脚
 \chead{}
 
 \rhead{\CJKfamily{kai} 第 \thepage 页}
@@ -77,8 +77,8 @@
 }
 
 \begin{document}
-\title{ICPC Templates For Grooming}
-\author {ChenJr}
+\title{ACM-Template}
+\author {Rea1}
 \maketitle
 \tableofcontents
 \newpage

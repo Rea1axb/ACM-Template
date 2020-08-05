@@ -16,4 +16,4 @@
 4. 二级目录中的`config`文件配置跟上述相同，只需要照葫芦画瓢即可。
 
 #### 使用
-之后编译运行main.cpp，之后就会生成一份template.tex文件，最后只需要用Latex使用XeLatex编译生成pdf文件即可。
+之后编译运行main.cpp，之后就会生成一份template.tex文件，最后只需要用Latex使用XeLatex编译生成pdf文件即可,第一次只生成目录，pdf中没有目录，再编译一次即可。
