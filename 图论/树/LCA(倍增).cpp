@@ -27,7 +27,7 @@ namespace LCA {
         }
     }
 
-    int solve(int u, int v) {
+    int query(int u, int v) {
         if (deg[u] > deg[v]) {
             swap(u, v);
         }
@@ -52,4 +52,4 @@ namespace LCA {
     }
 };
 LCA::bfs(root);
-LCA::solve(u, v);
+LCA::query(u, v);
