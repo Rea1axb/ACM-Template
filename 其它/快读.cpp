@@ -11,4 +11,4 @@ inline int read(){//如果是long long，这行和下面一行int改ll
         ch=getchar();
     }
     return x*f;
-}//打死我都不用！！！！
+}
