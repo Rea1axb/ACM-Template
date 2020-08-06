@@ -14,7 +14,7 @@ namespace LCA{
         int id;
         int v;
     };
-    vector<node> q[MAXQ];
+    vector<node> q[MAXM];
     int ans[MAXQ];
 
     void init(int _n, int _q) {
@@ -30,8 +30,8 @@ namespace LCA{
     }
 
     void qadd(int u, int v, int id) {
-        q[u].push({id, v});
-        q[v].push({id, u});
+        q[u].push_back({id, v});
+        q[v].push_back({id, u});
     }
 
     int find(int x) {
@@ -40,7 +40,7 @@ namespace LCA{
     }
 
     void dfs(int u, int fa) {
-        for (int i = first[u]; i += -1; i = e[i].next) {
+        for (int i = first[u]; i != -1; i = e[i].next) {
             int v = e[i].v;
             if (v == fa) continue;
             dfs(v, u);
