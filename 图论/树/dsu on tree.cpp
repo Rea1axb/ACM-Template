@@ -42,7 +42,7 @@ void dfs1(int u, int fa) { //轻重链剖分
     }
 }
 
-void add(int u, int fa, int val) {
+void update(int u, int fa, int val) {
     cnt[color[u]] += val;
     if (cnt[color[u]] > maxcnt) {
         maxcnt = cnt[color[u]];
@@ -53,7 +53,7 @@ void add(int u, int fa, int val) {
     for (int i = first[u]; i != -1; i = e[i].next) {
         int v = e[i].v;
         if (v == fa || v == nowson) continue;
-        add(v, u, val); //将轻儿子信息加上
+        update(v, u, val); //将轻儿子信息加上
     }
 }
 
@@ -67,11 +67,11 @@ void dfs2(int u, int fa, bool keep) { //keep表示是否保留该节点的贡献
         dfs2(son[u], u, 1); //遍历重儿子，保留贡献
         nowson = son[u];
     }
-    add(u, fa, 1); //继承重儿子信息，将非重儿子信息加上去
+    update(u, fa, 1); //继承重儿子信息，将非重儿子信息加上去
     nowson = 0; //若该节点为非重儿子，保证能够把子树的贡献全部删去
-    ans[u] = sum;
+    ans[u] = sum; //更新答案方式因问题的不同而不同
     if (!keep) { //删除贡献，不保留信息
-        add(u, fa, -1);
+        update(u, fa, -1);
         sum = 0;
         maxcnt = 0;
     }
