@@ -8,4 +8,5 @@
 <树上差分> <树上差分.cpp>
 <树链剖分> <树链剖分.cpp>
 <dsu on tree> <dsu on tree.cpp>
+<虚树> <虚树.cpp>
 <点分治> <> <> <点分治>
