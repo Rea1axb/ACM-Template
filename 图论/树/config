@@ -7,4 +7,5 @@
 <LCA(欧拉序列转RMQ)> <LCA(欧拉序列转RMQ).cpp>
 <树上差分> <树上差分.cpp>
 <树链剖分> <树链剖分.cpp>
+<dsu on tree> <dsu on tree.cpp>
 <点分治> <> <> <点分治>
