@@ -1,10 +1,8 @@
-ll qmi(ll m, ll k, ll p)
-{
-    ll res = 1 % p, t = m % p;
-    while (k)
-    {
-        if (k&1) res = res * t % p;
-        t = t * t % p;
+ll qpow(ll m, ll k) {
+    ll res = 1, t = m % mod;
+    while (k) {
+        if (k&1) res = res * t % mod;
+        t = t * t % mod;
         k >>= 1;
     }
     return res;
