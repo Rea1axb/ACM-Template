@@ -2,9 +2,7 @@
 <树的重心> <树的重心.cpp>
 <树的直径> <树的直径.cpp>
 <树上倍增> <树上倍增.cpp>
-<LCA(倍增)> <LCA(倍增).cpp>
-<LCA(Tarjan)> <LCA(Tarjan).cpp>
-<LCA(欧拉序列转RMQ)> <LCA(欧拉序列转RMQ).cpp>
+<LCA> <> <> <LCA>
 <树上差分> <树上差分.cpp>
 <树链剖分> <树链剖分.cpp>
 <dsu on tree> <dsu on tree.cpp>

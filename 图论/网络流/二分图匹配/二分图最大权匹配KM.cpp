@@ -1,6 +1,14 @@
 /*
 时间复杂度O(N^3)
 最小权匹配只需将边权改为负值，最大匹配的负值即为答案
+
+xi + yj <= wij
+最大化sum(x) + sum(y)
+二分图最小权匹配
+
+xi + yj >= wij
+最小化sum(x) + sum(y)
+二分图最大权匹配
 */
 namespace KM {
     int link_x[MAXN], link_y[MAXN], N;
@@ -63,13 +71,14 @@ namespace KM {
     }
     void init(int _cntx, int _cnty) {
         cntx = _cntx, cnty = _cnty;
-        N = max(cntx, cnty) + 1;
+        N = max(cntx, cnty);
         for(int i = 1; i <= N; i++) {
             link_x[i] = link_y[i] = 0;
             visy[i] = false;
+            hx[i] = hy[i] = 0;
+            pre[i] = 0;
         }
         for(int i = 1; i <= N; i++) {
-            hx[i] = 0;
             for(int j = 1; j <= N; j++) {
                 if(hx[i] < mp[i][j])
                     hx[i] = mp[i][j];
@@ -86,6 +95,7 @@ namespace KM {
         return ans;
     }
 }
+
 scanf("%d%d%d", &cntx, &cnty, &M);
 for(int i=1; i<=M; i++)
 {
