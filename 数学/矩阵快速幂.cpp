@@ -69,3 +69,5 @@ struct Matrix {
         return ans;
     }
 };
+Matrix mat(n, m);
+mat.init();
