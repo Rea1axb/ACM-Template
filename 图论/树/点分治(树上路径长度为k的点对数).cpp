@@ -110,6 +110,7 @@ int main() {
         add(u, v, 1);
         add(v, u, 1);
     }
+    fill(vis, vis + n + 1, 0);
     tolsize = n; root = 0;
     mson[0] = INF; //int INF
     get_root(1, 0);
