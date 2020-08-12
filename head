@@ -24,7 +24,7 @@
 
 \pagestyle{fancy}
 
-\lhead{\CJKfamily{kai} ZheJiang University of Technology} %以下分别为左中右的页眉和页脚
+\lhead{\CJKfamily{kai} Zhejiang University of Technology} %以下分别为左中右的页眉和页脚
 \chead{}
 
 \rhead{\CJKfamily{kai} 第 \thepage 页}
