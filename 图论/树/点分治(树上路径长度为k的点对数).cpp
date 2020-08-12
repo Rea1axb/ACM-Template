@@ -81,7 +81,7 @@ ll cal(int x, ll w) {
     sort(dist + 1, dist + tol + 1);
     int l = 1;
     while (l < tol && dist[l] + dist[tol] < k) l++; //有些题目不需要
-    while (l < tol && dist[l] * 2 <= k) {
+    while (l < tol && dist[l] * 2 <= k) { //不同题目边界，查询方式不同
         int left = left_bound(l + 1, k - dist[l]);
         int right = right_bound(l + 1, k - dist[l]);
         if (right >= left) ans += (right - left + 1);
@@ -114,6 +114,7 @@ int main() {
     tolsize = n; root = 0;
     mson[0] = INF; //int INF
     get_root(1, 0);
+    res = 0;
     solve(root);
     printf("%lld\n", res);
     return 0;
