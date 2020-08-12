@@ -28,7 +28,7 @@ void add(int a, int b, ll c) {
     e[idx].next = first[a];
     first[a] = idx++;
 }
-void init() {
+void init() { //初始化修改
     fill(first, first + n + 1, -1);
     idx = 0;
 }
@@ -80,7 +80,7 @@ ll cal(int x, ll w) {
     get_dis(x, 0, w);
     sort(dist + 1, dist + tol + 1);
     int l = 1;
-    while (l < tol && dist[l] + dist[tol] < k) l++;
+    while (l < tol && dist[l] + dist[tol] < k) l++; //有些题目不需要
     while (l < tol && dist[l] * 2 <= k) {
         int left = left_bound(l + 1, k - dist[l]);
         int right = right_bound(l + 1, k - dist[l]);
@@ -111,7 +111,7 @@ int main() {
         add(v, u, 1);
     }
     tolsize = n; root = 0;
-    mson[0] = INF;
+    mson[0] = INF; //int INF
     get_root(1, 0);
     solve(root);
     printf("%lld\n", res);

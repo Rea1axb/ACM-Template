@@ -38,4 +38,4 @@ BIT::init(n);
 BIT::change(i, a[i]);
 //i位置加上k
 BIT::change(i, k);
-ans = query(l, r);
+ans = query(l, r);//多组数据时要考虑其他组测试数据的影响
