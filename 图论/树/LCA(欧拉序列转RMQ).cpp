@@ -46,7 +46,7 @@ namespace LCA {
         }
         for (int j = 1; j < DEG; j++) {
             for (int i = 1; i + (1 << j) - 1 <= n * 2; i++) {
-                if (dep[f[i][j - 1]] < dep[f[i + (1 << (j - 1))][j - 1]]) {
+                if (dep[pos[f[i][j - 1]]] < dep[pos[f[i + (1 << (j - 1))][j - 1]]]) {
                     f[i][j] = f[i][j - 1];
                 } else {
                     f[i][j] = f[i + (1 << (j - 1))][j - 1];
