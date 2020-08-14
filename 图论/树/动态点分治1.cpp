@@ -30,7 +30,7 @@ void add(int a, int b) {
     e[idx].next = first[a];
     first[a] = idx++;
 }
-void init() { //³õÊ¼»¯ÐÞ¸Ä
+void init() {
     fill(first, first + n + 1, -1);
     idx = 0;
 }

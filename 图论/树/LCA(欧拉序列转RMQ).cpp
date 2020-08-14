@@ -59,7 +59,11 @@ namespace LCA {
         int l = min(pos[u], pos[v]);
         int r = max(pos[u], pos[v]);
         int lg = logn[r - l + 1];
-        return min(f[l][lg], f[r - (1 << lg) + 1][lg]);
+        if (dep[pos[f[l][lg]]] < dep[pos[f[r - (1 << lg) + 1][lg]]]) {
+            return f[l][lg];
+        } else {
+            return f[r - (1 << lg) + 1][lg];
+        }
     }
 };
 LCA::st_init(); //最开始初始化，before T--
