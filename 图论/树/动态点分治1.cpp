@@ -1,14 +1,11 @@
 /*
-ÀýÌâ£º¸ø³öÒ»¿Ã n ¸öµãµÄµãÈ¨Ê÷£¬ÔÊÐíÐÞ¸ÄµãÈ¨£¬Ñ¯ÎÊÓëµã x¾àÀë²îÐ¡ÓÚµÈÓÚ d µÄµãµÄµãÈ¨ºÍ
-
-¶ÔÓÚÃ¿¸öµãÎ¬»¤Á½¿ÃÈ¨ÖµÏß¶ÎÊ÷£¬·Ö±ðÎ¬»¤ÒÔ¸ÃµãÎªÖØÐÄµÄ·ÖÖÎ
-²ãÖÐµ½Õâ¸öµãµÄ¾àÀëµÄÈ¨ÖµºÍÒÔ¼°µ½Õâ¸öµãµÄµã·ÖÊ÷¸¸Ç×¾àÀëµÄÈ¨
-ÖµºÍ
-
-ÔÚÍ³¼Æ x ½ÚµãµÄÊ±ºòÖ»ÒªÍ³¼ÆÆäµ½µã·ÖÊ÷Ê÷¸ùµÄÁ´ÉÏÃ¿¸öÖØÐÄµÄ
-¹±Ï×ÖµÀÛ¼Ó¼´¿É
-
-µã·ÖÊ÷Éî¶È²»³¬¹ýlogn
+ä¾‹é¢˜ï¼šç»™å‡ºä¸€æ£µ n ä¸ªç‚¹çš„ç‚¹æƒæ ‘ï¼Œå…è®¸ä¿®æ”¹ç‚¹æƒï¼Œè¯¢é—®ä¸Žç‚¹ xè·ç¦»å·®å°äºŽç­‰äºŽ d çš„ç‚¹çš„ç‚¹æƒå’Œ
+å¯¹äºŽæ¯ä¸ªç‚¹ç»´æŠ¤ä¸¤æ£µæƒå€¼çº¿æ®µæ ‘ï¼Œåˆ†åˆ«ç»´æŠ¤ä»¥è¯¥ç‚¹ä¸ºé‡å¿ƒçš„åˆ†æ²»
+å±‚ä¸­åˆ°è¿™ä¸ªç‚¹çš„è·ç¦»çš„æƒå€¼å’Œä»¥åŠåˆ°è¿™ä¸ªç‚¹çš„ç‚¹åˆ†æ ‘çˆ¶äº²è·ç¦»çš„æƒ
+å€¼å’Œ
+åœ¨ç»Ÿè®¡ x èŠ‚ç‚¹çš„æ—¶å€™åªè¦ç»Ÿè®¡å…¶åˆ°ç‚¹åˆ†æ ‘æ ‘æ ¹çš„é“¾ä¸Šæ¯ä¸ªé‡å¿ƒçš„
+è´¡çŒ®å€¼ç´¯åŠ å³å¯
+ç‚¹åˆ†æ ‘æ·±åº¦ä¸è¶…è¿‡logn
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -35,15 +32,15 @@ void init() {
     idx = 0;
 }
 namespace LCA {
-    int seq[MAXN * 2];//¼ÇÂ¼Å·À­Ðò¶ÔÓ¦µÄµãµÄ±àºÅ
-    int dep[MAXN * 2];//¼ÇÂ¼Å·À­ÐòµÄÉî¶È
-    int pos[MAXN];//¼ÇÂ¼½ÚµãÔÚÅ·À­ÐòÖÐµÚÒ»´Î³öÏÖµÄÎ»ÖÃ±àºÅ
-    int cnt;//Å·À­Ðò
-    int n;//½ÚµãÊýÁ¿
-    int f[MAXN * 2][DEG];//ST±í
+    int seq[MAXN * 2];//è®°å½•æ¬§æ‹‰åºå¯¹åº”çš„ç‚¹çš„ç¼–å·
+    int dep[MAXN * 2];//è®°å½•æ¬§æ‹‰åºçš„æ·±åº¦
+    int pos[MAXN];//è®°å½•èŠ‚ç‚¹åœ¨æ¬§æ‹‰åºä¸­ç¬¬ä¸€æ¬¡å‡ºçŽ°çš„ä½ç½®ç¼–å·
+    int cnt;//æ¬§æ‹‰åº
+    int n;//èŠ‚ç‚¹æ•°é‡
+    int f[MAXN * 2][DEG];//STè¡¨
     int logn[MAXN * 2];
 
-    void st_init() {//Ô¤´¦Àílog£¬·ÀÖ¹²éÑ¯Ê±Ó°ÏìËÙ¶È
+    void st_init() {//é¢„å¤„ç†logï¼Œé˜²æ­¢æŸ¥è¯¢æ—¶å½±å“é€Ÿåº¦
         logn[1] = 0;
         logn[2] = 1;
         for (int i = 3; i < MAXN * 2; i++) {
@@ -69,7 +66,7 @@ namespace LCA {
         }
     }
 
-    void solve() {//ST±í´¦Àí
+    void solve() {//STè¡¨å¤„ç†
         for (int i = 1; i <= n * 2; i++) {
             f[i][0] = seq[i];
         }
@@ -103,14 +100,14 @@ struct BIT {
         return x & (-x);
     }
 
-    void updata(int i, int k) {//ÔÚiÎ»ÖÃ¼ÓÉÏk
+    void updata(int i, int k) {//åœ¨iä½ç½®åŠ ä¸Šk
         while (i <= n) {
             c[i] += k;
             i += lowbit(i);
         }
     }
 
-    ll getsum(int i) {//ÇóA[1] + A[2] + ... + A[i]
+    ll getsum(int i) {//æ±‚A[1] + A[2] + ... + A[i]
         ll res = 0;
         while (i > 0) {
             res += c[i];
@@ -134,9 +131,9 @@ struct BIT {
 }T1[MAXN], T2[MAXN];
 int sz[MAXN], mson[MAXN], vis[MAXN];
 int tolsize, root, tol;
-int belong[MAXN]; //µã·ÖÊ÷¸¸½Úµã
-int belongsz[MAXN]; //µã·ÖÊ÷×ÓÊ÷´óÐ¡
-void get_root(int x, int fa) {//ÕÒÊ÷µÄÖØÐÄ
+int belong[MAXN]; //ç‚¹åˆ†æ ‘çˆ¶èŠ‚ç‚¹
+int belongsz[MAXN]; //ç‚¹åˆ†æ ‘å­æ ‘å¤§å°
+void get_root(int x, int fa) {//æ‰¾æ ‘çš„é‡å¿ƒ
     sz[x] = 1; mson[x] = 0;
     for (int i = first[x]; i != -1; i = e[i].next) {
         int v = e[i].v;
@@ -148,8 +145,8 @@ void get_root(int x, int fa) {//ÕÒÊ÷µÄÖØÐÄ
     if (tolsize - sz[x] > mson[x]) mson[x] = tolsize - sz[x];
     if (mson[x] < mson[root]) root = x;
 }
-void build(int x, int fa) { //½¨Á¢µã·ÖÊ÷
-    belong[x] = fa; //¼ÇÂ¼µã·ÖÊ÷ÉÏ½ÚµãµÄ¸¸½Úµã
+void build(int x, int fa) { //å»ºç«‹ç‚¹åˆ†æ ‘
+    belong[x] = fa; //è®°å½•ç‚¹åˆ†æ ‘ä¸ŠèŠ‚ç‚¹çš„çˆ¶èŠ‚ç‚¹
     belongsz[x] = 1;
     vis[x] = 1;
     for (int i = first[x]; i != -1; i = e[i].next) {
@@ -162,7 +159,7 @@ void build(int x, int fa) { //½¨Á¢µã·ÖÊ÷
         belongsz[x] += belongsz[nowroot];
     }
 }
-void modify(int x, int val) { //½«xµãÈ¨Öµ¼ÓÉÏval£¬¸üÐÂÓ°Ïì
+void modify(int x, int val) { //å°†xç‚¹æƒå€¼åŠ ä¸Švalï¼Œæ›´æ–°å½±å“
     int now = x;
     while (now) {
         int fa = belong[now];
@@ -171,7 +168,7 @@ void modify(int x, int val) { //½«xµãÈ¨Öµ¼ÓÉÏval£¬¸üÐÂÓ°Ïì
         now = fa;
     }
 }
-ll query(int x, int k) { //Í³¼ÆÓëxµã¾àÀë²»³¬¹ýkµÄµãÈ¨ºÍ
+ll query(int x, int k) { //ç»Ÿè®¡ä¸Žxç‚¹è·ç¦»ä¸è¶…è¿‡kçš„ç‚¹æƒå’Œ
     ll ans = 0;
     int now = x, last = 0;
     while (now) {
@@ -181,15 +178,15 @@ ll query(int x, int k) { //Í³¼ÆÓëxµã¾àÀë²»³¬¹ýkµÄµãÈ¨ºÍ
             now = belong[now];
             continue;
         }
-        ans += T1[now].query(1, min(k - d + 1, T1[now].n)); //Í³¼Æ¸Ã·ÖÖÎ²ãËùÓÐÐÅÏ¢
-        if (last) ans -= T2[last].query(1, min(k - d + 1, T2[last].n)); //É¾È¥ÒÑÍ³¼ÆµÄ×Ó·ÖÖÎ²ãÐÅÏ¢
+        ans += T1[now].query(1, min(k - d + 1, T1[now].n)); //ç»Ÿè®¡è¯¥åˆ†æ²»å±‚æ‰€æœ‰ä¿¡æ¯
+        if (last) ans -= T2[last].query(1, min(k - d + 1, T2[last].n)); //åˆ åŽ»å·²ç»Ÿè®¡çš„å­åˆ†æ²»å±‚ä¿¡æ¯
         last = now;
         now = belong[now];
     }
     return ans;
 }
 int main() {
-    LCA::st_init(); //st³õÊ¼»¯
+    LCA::st_init(); //ståˆå§‹åŒ–
     int m;
     scanf("%d%d", &n, &m);
     init();
@@ -209,10 +206,10 @@ int main() {
     fill(vis, vis + n + 1, 0);
     tolsize = n; root = 0;
     mson[0] = INF; //int INF
-    get_root(1, 0); //µÃµ½ÖØÐÄ
-    build(root, 0); //½¨Á¢µã·ÖÊ÷
-    for (int i = 1; i <= n; i++) { //Ê÷×´Êý×é³õÊ¼»¯
-        T1[i].init(belongsz[i] * 2); //Èç¹û¿Õ¼ä¹»£¬¾¡Á¿¿ª´óÐ©
+    get_root(1, 0); //å¾—åˆ°é‡å¿ƒ
+    build(root, 0); //å»ºç«‹ç‚¹åˆ†æ ‘
+    for (int i = 1; i <= n; i++) { //æ ‘çŠ¶æ•°ç»„åˆå§‹åŒ–
+        T1[i].init(belongsz[i] * 2); //å¦‚æžœç©ºé—´å¤Ÿï¼Œå°½é‡å¼€å¤§äº›
         T2[i].init(belongsz[i] * 2);
     }
     for (int i = 1; i <= n; i++) {
@@ -228,7 +225,7 @@ int main() {
             lastans = query(x, y);
             printf("%d\n", lastans);
         } else {
-            modify(x, y - val[x]); //½«xµãÈ¨Öµ¸ÄÎªy
+            modify(x, y - val[x]); //å°†xç‚¹æƒå€¼æ”¹ä¸ºy
             val[x] = y;
         }
     }

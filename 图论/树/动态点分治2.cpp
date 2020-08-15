@@ -1,14 +1,13 @@
 /*
-���⣺����һ�ñ�Ȩ����һ��ʼ���е㶼�ǰ׵�
-Ҫ��ά�����ֲ�����
-1. ��ɫȡ�����ڰ׻��䣩
-2. ��ѯ������Զ�������׵�֮��ľ���
-
-���Ƚ����������Ȼ��ÿһ���㿪�����ѡ�
-��һ���Ѽ�¼���������нڵ㵽���׽ڵ�ľ���C[MAXN]��
-�ڶ����Ѽ�¼�����ӽڵ�ĶѶ�B[MAXN]��
-��ôһ���ڵ�Ķ�2�е����ʹδ���������������о�������ڵ�������
-Ȼ��һ��ȫ�ֵĶѣ���¼���ж�2�����ֵ�ʹδ�ֵ֮�͡���ôȫ�ֵĶѶ����Ǵ�
+例题：给出一棵边权树，一开始所有点都是白点
+要求维护两种操作：
+1. 颜色取反（黑白互变）
+2. 查询树上最远的两个白点之间的距离
+首先建出点分树，然后每一个点开两个堆。
+第一个堆记录子树中所有节点到父亲节点的距离C[MAXN]，
+第二个堆记录所有子节点的堆顶B[MAXN]，
+那么一个节点的堆2中的最大和次大加起来就是子树中经过这个节点的最长链。
+然后开一个全局的堆，记录所有堆2中最大值和次大值之和。那么全局的堆顶就是答案
 */
 #include <bits/stdc++.h>
 using namespace std;
@@ -35,15 +34,15 @@ void init() {
     idx = 0;
 }
 namespace LCA {
-    int seq[MAXN * 2];//��¼ŷ�����Ӧ�ĵ�ı��
-    int dep[MAXN * 2];//��¼ŷ��������
-    int pos[MAXN];//��¼�ڵ���ŷ�����е�һ�γ��ֵ�λ�ñ��
-    int cnt;//ŷ����
-    int n;//�ڵ�����
-    int f[MAXN * 2][DEG];//ST��
+    int seq[MAXN * 2];//记录欧拉序对应的点的编号
+    int dep[MAXN * 2];//记录欧拉序的深度
+    int pos[MAXN];//记录节点在欧拉序中第一次出现的位置编号
+    int cnt;//欧拉序
+    int n;//节点数量
+    int f[MAXN * 2][DEG];//ST表
     int logn[MAXN * 2];
 
-    void st_init() {//Ԥ����log����ֹ��ѯʱӰ���ٶ�
+    void st_init() {//预处理log，防止查询时影响速度
         logn[1] = 0;
         logn[2] = 1;
         for (int i = 3; i < MAXN * 2; i++) {
@@ -69,7 +68,7 @@ namespace LCA {
         }
     }
 
-    void solve() {//ST������
+    void solve() {//ST表处理
         for (int i = 1; i <= n * 2; i++) {
             f[i][0] = seq[i];
         }
@@ -111,7 +110,7 @@ struct Heap {
         if (val) era.push(val);
     }
 
-    int get_max() { //��һ��Ԫ��
+    int get_max() { //第一大元素
         while (!q.empty() && !era.empty() && era.top() == q.top()) {
             q.pop();
             era.pop();
@@ -120,7 +119,7 @@ struct Heap {
         return q.top();
     }
 
-    int get_semax() { //�ڶ���Ԫ��
+    int get_semax() { //第二大元素
         int tmp = get_max();
         del(tmp);
         int res = get_max();
@@ -130,11 +129,11 @@ struct Heap {
 }ANS, B[MAXN], C[MAXN * 2];
 int sz[MAXN], mson[MAXN], vis[MAXN];
 int tolsize, root, tol;
-int belong[MAXN]; //��������ڵ�
-int belongsz[MAXN]; //�����������С
-int light[MAXN], ans[MAXN]; //lightΪ0��ʾ�׵㣬ans��¼ÿ�����ͳ�ƴ�
-int num; //��¼�׵�����
-void get_root(int x, int fa) {//����������
+int belong[MAXN]; //点分树父节点
+int belongsz[MAXN]; //点分树子树大小
+int light[MAXN], ans[MAXN]; //light为0表示白点，ans记录每个点的统计答案
+int num; //记录白点数量
+void get_root(int x, int fa) {//找树的重心
     sz[x] = 1; mson[x] = 0;
     for (int i = first[x]; i != -1; i = e[i].next) {
         int v = e[i].v;
@@ -154,8 +153,8 @@ void dfs(int x, int fa, int rt, int rtfa) { //
         dfs(v, x, rt, rtfa);
     }
 }
-void build(int x, int fa) { //���������
-    belong[x] = fa; //��¼������Ͻڵ�ĸ��ڵ�
+void build(int x, int fa) { //建立点分树
+    belong[x] = fa; //记录点分树上节点的父节点
     belongsz[x] = 1;
     vis[x] = 1;
     if (fa) {
@@ -235,7 +234,7 @@ int query() {
     else return ANS.get_max();
 }
 int main() {
-    LCA::st_init(); //st��ʼ��
+    LCA::st_init(); //st初始化
     scanf("%d", &n);
     init();
     for (int i = 1; i < n; i++) {
@@ -251,8 +250,8 @@ int main() {
     num = n;
     tolsize = n; root = 0;
     mson[0] = INF; //int INF
-    get_root(1, 0); //�õ�����
-    build(root, 0); //���������
+    get_root(1, 0); //得到重心
+    build(root, 0); //建立点分树
     int m;
     scanf("%d", &m);
     while (m--) {
