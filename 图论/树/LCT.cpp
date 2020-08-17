@@ -199,6 +199,11 @@ lct.init(n);
 //输入点权
 scanf("%lld", &lct.Tree[i].val);
 
+//边权
+Tree[i + n].val = e[i].w;
+lct.link(e[i].u, i + n);
+lct.link(e[i].v, i + n);
+
 //加边，不能加自环
 lct.link(u, v);
 
