@@ -1,3 +1,4 @@
+#pragma GCC optimize(2)
 struct LCT {
     struct node {
         int fa, ch[2]; //父亲(Splay对应的链向上由轻边连着哪个节点)、左右儿子
