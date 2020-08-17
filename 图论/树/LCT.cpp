@@ -3,9 +3,14 @@ struct LCT {
         int fa, ch[2]; //父亲(Splay对应的链向上由轻边连着哪个节点)、左右儿子
         int reverse;//区间反转标记
         bool  is_root;   //是否是所在Splay的根
+        int sz; //节点数量
         ll val; //点权
         ll sum; //路径上点权和
-        //ll maxv;
+
+        ll mul; //乘法lazy标记
+        ll add; //加法lazy标记
+
+        //ll maxv; //最值
     } Tree[MAXN];
     int n;
 
@@ -15,6 +20,9 @@ struct LCT {
             Tree[i].reverse = Tree[i].fa = Tree[i].ch[0] = Tree[i].ch[1] = 0;
             Tree[i].is_root = true;
             Tree[i].val = 0;
+            Tree[i].sz = 1;
+            Tree[i].mul = 1;
+            Tree[i].add = 0;
         }
     }
 
@@ -29,26 +37,52 @@ struct LCT {
         if (!x)
             return;
         swap(Tree[x].ch[0], Tree[x].ch[1]);
+        //swap(Tree[x].lcol, Tree[x].rcol); //有些颜色问题要翻转左右颜色
         Tree[x].reverse ^= 1;
     }
-    void pushdown(int x) {
+    void pushmul(int x, ll val) { //打乘法lazy标记
+        Tree[x].sum *= val;
+        Tree[x].val *= val;
+        Tree[x].mul *= val;
+        Tree[x].add *= val;
+    }
+    void pushadd(int x, ll val) { //打加法lazy标记
+        Tree[x].sum += Tree[x].sz * val;
+        Tree[x].val += val;
+        Tree[x].add += val;
+    }
+    void pushdown(int x) { //不同问题的标记下推方式不同
         //下传反转标记
+        if (Tree[x].mul != 1) { //乘法标记下推
+            pushmul(Tree[x].ch[0], Tree[x].mul);
+            pushmul(Tree[x].ch[1], Tree[x].mul);
+        }
+
+        if (Tree[x].add) { //加法标记下推
+            pushadd(Tree[x].ch[0], Tree[x].add);
+            pushadd(Tree[x].ch[1], Tree[x].add);
+        }
         if (Tree[x].reverse) {
             pushreverse(Tree[x].ch[0]);
             pushreverse(Tree[x].ch[1]);
             Tree[x].reverse = 0;
         }
+        Tree[x].mul = 1; //乘法标记复原
+        Tree[x].add = 0; //加法标记复原
     }
 
-    void update(int x) {
+    void update(int x) { //不同问题写法不同
         int l = Tree[x].ch[0], r = Tree[x].ch[1];
+        Tree[x].sz = 1;
         Tree[x].sum = Tree[x].val;
         //Tree[x].maxv = Tree[x].val;
         if (l) {
+            Tree[x].sz += Tree[l].sz;
             Tree[x].sum += Tree[l].sum;
             //Tree[x].maxv = max(Tree[x].maxv, Tree[l].maxv);
         }
         if (r) {
+            Tree[x].sz += Tree[r].sz;
             Tree[x].sum += Tree[r].sum;
             //Tree[x].maxv = max(Tree[x].maxv, Tree[r].maxv);
         }
@@ -137,7 +171,6 @@ struct LCT {
         //v的左孩子表示v上方相连的重链
         update(v);  //记得维护信息
     }
-
     bool judge(int u, int v) {
         //判断u和v是否连通
         while (Tree[u].fa)
@@ -152,7 +185,6 @@ struct LCT {
         access(v);//访问v
         Splay(v);//把v转到根结点，此时u的父亲为v
     }
-
     void modify(int x, int v) {
         //改变点值
         access(x);
@@ -167,7 +199,7 @@ lct.init(n);
 //输入点权
 scanf("%lld", &lct.Tree[i].val);
 
-//加边
+//加边，不能加自环
 lct.link(u, v);
 
 //删边
@@ -183,3 +215,10 @@ lct.modify(u, k);
 lct.split(u, v);
 ans = lct.Tree[v].sum;
 
+//将u到v路径上点权都加上c
+lct.split(u, v);
+lct.pushadd(v, c);
+
+//将u到v路径上点权都乘上c
+lct.split(u, v);
+lct.pushmul(v, c);
