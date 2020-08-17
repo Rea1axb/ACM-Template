@@ -3,7 +3,9 @@ struct LCT {
         int fa, ch[2]; //父亲(Splay对应的链向上由轻边连着哪个节点)、左右儿子
         int reverse;//区间反转标记
         bool  is_root;   //是否是所在Splay的根
-        int siz;
+        ll val; //点权
+        ll sum; //路径上点权和
+        //ll maxv;
     } Tree[MAXN];
     int n;
 
@@ -12,7 +14,7 @@ struct LCT {
         for (int i = 1; i <= MN; i++) {
             Tree[i].reverse = Tree[i].fa = Tree[i].ch[0] = Tree[i].ch[1] = 0;
             Tree[i].is_root = true;
-            Tree[i].siz = 1;
+            Tree[i].val = 0;
         }
     }
 
@@ -40,11 +42,16 @@ struct LCT {
 
     void update(int x) {
         int l = Tree[x].ch[0], r = Tree[x].ch[1];
-        Tree[x].siz = 1;
-        if (l)
-            Tree[x].siz += Tree[l].siz;
-        if (r)
-            Tree[x].siz += Tree[r].siz;
+        Tree[x].sum = Tree[x].val;
+        //Tree[x].maxv = Tree[x].val;
+        if (l) {
+            Tree[x].sum += Tree[l].sum;
+            //Tree[x].maxv = max(Tree[x].maxv, Tree[l].maxv);
+        }
+        if (r) {
+            Tree[x].sum += Tree[r].sum;
+            //Tree[x].maxv = max(Tree[x].maxv, Tree[r].maxv);
+        }
     }
 
     void rotate(int x) {
@@ -145,22 +152,34 @@ struct LCT {
         access(v);//访问v
         Splay(v);//把v转到根结点，此时u的父亲为v
     }
-    int Query_deep(int x) {
-        //询问x到LCT根的距离(深度)
-        access(x);
-        Splay(x);
-        return Tree[x].siz;
-    }
 
     void modify(int x, int v) {
         //改变点值
         access(x);
         Splay(x);
-        //Tree[x].val = v;更改值
+        Tree[x].val = v; //更改值
         update(x);
-
     }
-
 } lct;
-lct.init(n); //初始化
+//初始化
+lct.init(n);
+
+//输入点权
+scanf("%lld", &lct.Tree[i].val);
+
+//加边
+lct.link(u, v);
+
+//删边
+lct.cut(u, v);
+
+//判断两点是否连通
+ans = lct.judge(u, v);
+
+//更改点权为k
+lct.modify(u, k);
+
+//查询两点路径权值和(可以将点权设为1,查询两点间距离)
+lct.split(u, v);
+ans = lct.Tree[v].sum;
 
