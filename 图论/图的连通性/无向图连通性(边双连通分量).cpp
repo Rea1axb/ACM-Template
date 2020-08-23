@@ -1,28 +1,28 @@
 /*
-dfn[x]:x�ڵ��ʱ�������ʾx�ڵ��dfs��
-low[x]:��¼x�����еĵ��ܹ�ͨ���رߵִ�����Сʱ���
+dfn[x]:x节点的时间戳，表示x节点的dfs序
+low[x]:记录x子树中的点能够通过回边抵达点的最小时间戳
 
-������(x, y)����low[x] > dfn[x]
-˵�� y ���޷�ͨ����������ıߵ��� y ��������ĵ�
-������(x, y)Ϊ�ţ�����1��
-�Ե��£����ڵݹ��������low[x] == dfn[x]
-Ҳ����˵�����븸�ڵ����ӵ�����Ϊ�ţ�����2��
-���Ŵ���ɾ�����ʣ�µ�ͼ����ÿ����˫��ͨ����
+对树边(x, y)，若low[x] > dfn[x]
+说明 y 点无法通过树边以外的边到达 y 子树以外的点
+即树边(x, y)为桥（方法1）
+对点下，若在递归结束后有low[x] == dfn[x]
+也可以说明其与父节点连接的树边为桥（方法2）
+将桥打上删除标记剩下的图就是每个边双连通分量
 
-����˫��ͨ���������ر�ʱ��������Ϊ�����򸸽ڵ�Ͳ����ж�
-��Ϊ�����ڵ�ı�Ҳ�����ǻرߣ���Ҫ�ж��Ƿ��������ͬһ����
-�ڽ�ͼʱ�������ת��Ϊ���������ʱ��¼�����ڵı�id
-�����򸸽ڵ�ıߺ�����id����ͬ��ʱ��˵���ñ��ǻر�
+求解边双连通分量存在重边时，不能因为边连向父节点就不做判断
+因为到父节点的边也可能是回边，需要判断是否跟树边是同一条边
+在建图时将无向边转化为两条有向边时记录其属于的边id
+当连向父节点的边和树边id不相同的时候说明该边是回边
 */
 namespace Tarjan {
     int dfn[MAXN];
     int low[MAXN];
     stack<int> stk;
-    int n;//�ڵ���
-    int cnt;//˫��ͨ��������
-    int cutedge[MAXM * 2];//ĳ�����Ƿ�����
-    int resnum[MAXN];//ĳ����������˫��ͨ�������
-    vector<int> res[MAXN];//����ͨ�����ڵĵ�
+    int n;//节点数
+    int cnt;//双连通分量个数
+    int cutedge[MAXM * 2];//某条边是否是桥
+    int resnum[MAXN];//某个点所属的双连通分量编号
+    vector<int> res[MAXN];//边连通分量内的点
     int times;
 
     void dfs(int u, int fa) {
@@ -30,13 +30,13 @@ namespace Tarjan {
         stk.push(u);
         for (int i = first[u]; i != -1; i = e[i].next) {
             int v = e[i].v;
-            if (!dfn[v]) {//����
+            if (!dfn[v]) {//树边
                 dfs(v, u);
                 low[u] = min(low[u], low[v]);
                 if (low[v] > dfn[u]) {
-                    cutedge[i] = cutedge[i ^ 1] = 1;//�ñ�Ϊ��
+                    cutedge[i] = cutedge[i ^ 1] = 1;//该边为桥
                 }
-            } else if (v != fa) {//�ر�,������ر߼�¼��Ӧ���ǵ���õ������
+            } else if (v != fa) {//回边,如果有重边记录的应该是到达该点的树边
                 low[u] = min(low[u], dfn[v]);
             }
         }

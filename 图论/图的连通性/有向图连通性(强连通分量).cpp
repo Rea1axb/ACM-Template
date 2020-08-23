@@ -1,38 +1,38 @@
 /*
 
-����ͼ�߷���
-�ڱ�������ͼʱ�����һ��DFS ��
-����ͼ�еı߿��Ի���Ϊ
-1 DFS ���ϵ�����
-2 �������Ƚڵ�Ļر�
-3 ����������ǰ���
-4 ����������ҷ�������ϵ�ڵ�ĺ���
+有向图边分类
+在遍历有向图时会产生一棵DFS 树
+有向图中的边可以划分为
+1 DFS 树上的树边
+2 连接祖先节点的回边
+3 连向子树的前向边
+4 连向非祖先且非子树关系节点的横跨边
 
-����ͨ��DFS ȷ������
-ǰ��߶���SCC��ǿ��ͨ������ �ļ���û��Ӱ��
-�ر߿��Ը������γɵ�·�����ɻ�
-����(x,y) �Ƿ��������ȡ�����Ƿ���·���ܹ���y �ִ�x
-�������ֻ�迼���ûرߺͺ���������low ֵ
+首先通过DFS 确立树边
+前向边对于SCC（强连通分量） 的计算没有影响
+回边可以跟树边形成的路径构成环
+横跨边(x,y) 是否产生贡献取决于是否有路径能够从y 抵达x
+因此我们只需考虑用回边和横跨边来更新low 值
 
-dfn[x]:x�ڵ��ʱ�������ʾx�ڵ��dfs��
-low[x]:��¼x�����еĵ��ܹ�ͨ���رߵִ�����Сʱ���
+dfn[x]:x节点的时间戳，表示x节点的dfs序
+low[x]:记录x子树中的点能够通过回边抵达点的最小时间戳
 
-����x ��ʱ��lowx ��ʼ��Ϊdfnx������x����ջ��
-��x ����������������(x; y) ����lowx = min(lowx; lowy)
-��������(x; y) �����ӵ㱻���ʹ�����ջ��
-�����lowx = min(lowx; dfny)
-�����ݺ����lowx == dfnx ʱ����ջ��Ԫ��ֱ��x ����
-����Ԫ�ع���һ��ǿ��ͨ����(���Ϊ��������)
+访问x 点时将lowx 初始化为dfnx，并将x加入栈中
+对x 点连向子树的树边(x; y) 更新lowx = min(lowx; lowy)
+对其它边(x; y) 若连接点被访问过且在栈中
+则更新lowx = min(lowx; dfny)
+当回溯后出现lowx == dfnx 时弹出栈中元素直到x 弹出
+弹出元素构成一个强连通分量(标号为逆拓扑序)
 */
 namespace Tarjan {
     int dfn[MAXN];
     int low[MAXN];
     stack<int> stk;
-    int vis[MAXN];//��¼ĳ�����Ƿ�����ջ
-    int n;//�ڵ���
-    int cnt;//ǿ��ͨ��������
-    int resnum[MAXN];//ĳ����������ǿ��ͨ�������
-    vector<int> res[MAXN];//ǿ��ͨ�����ڵĵ�
+    int vis[MAXN];//记录某个点是否已入栈
+    int n;//节点数
+    int cnt;//强连通分量个数
+    int resnum[MAXN];//某个点所属的强连通分量编号
+    vector<int> res[MAXN];//强连通分量内的点
     int times;
 
     void dfs(int u, int fa) {
@@ -41,7 +41,7 @@ namespace Tarjan {
         vis[u] = 1;
         for (int i = first[u]; i != -1; i = e[i].next) {
             int v = e[i].v;
-            if (!dfn[v]) {//����
+            if (!dfn[v]) {//树边
                 dfs(v, u);
                 low[u] = min(low[u], low[v]);
             } else if (vis[v]) {

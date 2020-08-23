@@ -1,9 +1,9 @@
 /*
-ÔÚÒ»Î¬Ê÷×´Êı×éÖĞ£¬
-c[x]¼ÇÂ¼µÄÊÇÓÒ¶ËµãÎªx£¬³¤¶ÈÎªlowbit(x)µÄÇø¼äºÍ
+åœ¨ä¸€ç»´æ ‘çŠ¶æ•°ç»„ä¸­ï¼Œ
+c[x]è®°å½•çš„æ˜¯å³ç«¯ç‚¹ä¸ºxï¼Œé•¿åº¦ä¸ºlowbit(x)çš„åŒºé—´å’Œ
 
-ÔÚ¶şÎ¬Ê÷×´Êı×éÖĞ£¬
-¿ÉÒÔÓÃc[x][y]¼ÇÂ¼ÓÒÏÂ½ÇÎª(x, y)£¬¸ßÎªlowbit(x)£¬¿íÎªlowbit(y)µÄ¾ØÕóºÍ
+åœ¨äºŒç»´æ ‘çŠ¶æ•°ç»„ä¸­ï¼Œ
+å¯ä»¥ç”¨c[x][y]è®°å½•å³ä¸‹è§’ä¸º(x, y)ï¼Œé«˜ä¸ºlowbit(x)ï¼Œå®½ä¸ºlowbit(y)çš„çŸ©é˜µå’Œ
 */
 namespace BIT {
 ll c[MAXN][MAXM];
@@ -12,7 +12,7 @@ int lowbit(int x) {
     return x & (-x);
 }
 
-void updata(int x, int y, int k) {//ÔÚ(x, y)¼ÓÉÏk
+void updata(int x, int y, int k) {//åœ¨(x, y)åŠ ä¸Šk
     int tmp = y;
     while (x <= n) {
         y = tmp;
@@ -24,7 +24,7 @@ void updata(int x, int y, int k) {//ÔÚ(x, y)¼ÓÉÏk
     }
 }
 
-ll getsum(int x, int y) {//Çó×óÉÏ½ÇÎª(1, 1)£¬ÓÒÏÂ½ÇÎª(x, y)µÄ¾ØÕóºÍ
+ll getsum(int x, int y) {//æ±‚å·¦ä¸Šè§’ä¸º(1, 1)ï¼Œå³ä¸‹è§’ä¸º(x, y)çš„çŸ©é˜µå’Œ
     ll res = 0;
     int tmp = y;
     while (x > 0) {
@@ -59,8 +59,8 @@ void init(int _n, int _m) {
 BIT::init(n, m);
 BIT::change(i, j, a[i][j]);
 
-//(x, y)Î»ÖÃ¼ÓÉÏk
+//(x, y)ä½ç½®åŠ ä¸Šk
 BIT::change(x, y, k);
 
-//Çó×óÉÏ½ÇÎª(x1, y1), ÓÒÏÂ½ÇÎª(x2, y2)µÄ¾ØÕóºÍ
+//æ±‚å·¦ä¸Šè§’ä¸º(x1, y1), å³ä¸‹è§’ä¸º(x2, y2)çš„çŸ©é˜µå’Œ
 ans = BIT::query(x1, y1, x2, y2);

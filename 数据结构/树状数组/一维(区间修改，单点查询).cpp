@@ -1,5 +1,5 @@
 /*
-用树状数组维护差分数组D[i] = A[i] - A[i-1]
+鐢ㄦ爲鐘舵暟缁勭淮鎶ゅ樊鍒嗘暟缁凞[i] = A[i] - A[i-1]
 A[i] = D[1] + D[2] + D[3] + ... + D[i]
 
 */
@@ -17,7 +17,7 @@ void updata(int i, int k) {
     }
 }
 
-ll getsum(int i) {//求D[1] + D[2] + ... + D[i], 即A[i]
+ll getsum(int i) {//姹侱[1] + D[2] + ... + D[i], 鍗矨[i]
     ll res = 0;
     while (i > 0) {
         res += c[i];
@@ -44,6 +44,6 @@ void init(int _n) {
 BIT::init(n);
 BIT::change(i, i, a[i]);
 
-//[l, r]区间加上k
+//[l, r]鍖洪棿鍔犱笂k
 BIT::change(l, r, k);
 ans = BIT::query(i);

@@ -5,7 +5,7 @@
 struct SegmentTree {
     int l, r;
     ll sum, add;
-    //ll maxn;//Çø¼ä×îÖµ
+    //ll maxn;//åŒºé—´æœ€å€¼
     void upd(ll val) {
         sum += val * (r - l + 1);
         //maxn += val;

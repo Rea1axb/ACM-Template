@@ -28,15 +28,15 @@ void add(int a, int b, ll c) {
     e[idx].next = first[a];
     first[a] = idx++;
 }
-void init() { //³õÊ¼»¯ĞŞ¸Ä
+void init() { //åˆå§‹åŒ–ä¿®æ”¹
     fill(first, first + n + 1, -1);
     idx = 0;
 }
 int sz[MAXN], mson[MAXN], vis[MAXN];
-ll dist[MAXN];//µ½Ä¿±êµãµÄ¾àÀë
+ll dist[MAXN];//åˆ°ç›®æ ‡ç‚¹çš„è·ç¦»
 int tolsize, root, tol;
 ll res, k;
-void get_root(int x, int fa) {//ÕÒÊ÷µÄÖØĞÄ
+void get_root(int x, int fa) {//æ‰¾æ ‘çš„é‡å¿ƒ
     sz[x] = 1; mson[x] = 0;
     for (int i = first[x]; i != -1; i = e[i].next) {
         int v = e[i].v;
@@ -80,8 +80,8 @@ ll cal(int x, ll w) {
     get_dis(x, 0, w);
     sort(dist + 1, dist + tol + 1);
     int l = 1;
-    while (l < tol && dist[l] + dist[tol] < k) l++; //ÓĞĞ©ÌâÄ¿²»ĞèÒª
-    while (l < tol && dist[l] * 2 <= k) { //²»Í¬ÌâÄ¿±ß½ç£¬²éÑ¯·½Ê½²»Í¬
+    while (l < tol && dist[l] + dist[tol] < k) l++; //æœ‰äº›é¢˜ç›®ä¸éœ€è¦
+    while (l < tol && dist[l] * 2 <= k) { //ä¸åŒé¢˜ç›®è¾¹ç•Œï¼ŒæŸ¥è¯¢æ–¹å¼ä¸åŒ
         int left = left_bound(l + 1, k - dist[l]);
         int right = right_bound(l + 1, k - dist[l]);
         if (right >= left) ans += (right - left + 1);
@@ -95,7 +95,7 @@ void solve(int x) {
     for (int i = first[x]; i != -1; i = e[i].next) {
         int v = e[i].v;
         if (vis[v]) continue;
-        res -= cal(v, e[i].w); //¼õÈ¥ÔÚÍ¬Ò»¿Ã×ÓÊ÷µÄ²»ºÏ·¨Çé¿ö
+        res -= cal(v, e[i].w); //å‡å»åœ¨åŒä¸€æ£µå­æ ‘çš„ä¸åˆæ³•æƒ…å†µ
         tolsize = sz[v];root = 0;
         get_root(v, x);
         solve(root);

@@ -2,7 +2,7 @@
 A[i] = D[1] + D[2] + D[3] + ... + D[i]
 A[1] + A[2] + ... + A[n]
 = n * (D[1] + D[2] + ... + D[n]) - (0 * D[1] + 1 * D[2] + ... + D[n])
-Òò´ËÎ¬»¤Á½¸öÊı×´Êı×é
+å› æ­¤ç»´æŠ¤ä¸¤ä¸ªæ•°çŠ¶æ•°ç»„
 sum1[i] = D[i]
 sum2[i] = D[i] * (i - 1)
 
@@ -16,7 +16,7 @@ int lowbit(int x) {
 }
 
 void updata(int i, int k) {
-    ll x = i;//ÏÈ±£´æiµÄÖµ
+    ll x = i;//å…ˆä¿å­˜içš„å€¼
     while (i <= n) {
         sum1[i] += k;
         sum2[i] += k * (x - 1);
@@ -51,8 +51,8 @@ void init(int _n) {
 BIT::init(n);
 BIT::change(i, i, a[i]);
 
-//[l, r]Çø¼ä¼ÓÉÏk
+//[l, r]åŒºé—´åŠ ä¸Šk
 BIT::change(l, r, k);
 
-//[l, r]Çø¼äºÍ
+//[l, r]åŒºé—´å’Œ
 ans = BIT::query(l, r);

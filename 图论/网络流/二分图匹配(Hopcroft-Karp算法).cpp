@@ -1,6 +1,6 @@
-namespace BiMatch {//Hopcroft-Karp算法，时间复杂度O(sqrt(V)*E)
-    int n;//左边点的数量
-    int m;//右边点的数量
+namespace BiMatch {//Hopcroft-Karp绠楁硶锛屾椂闂村鏉傚害O(sqrt(V)*E)
+    int n;//宸﹁竟鐐圭殑鏁伴噺
+    int m;//鍙宠竟鐐圭殑鏁伴噺
     struct edge {
         int u, v;
         int next;
@@ -8,8 +8,8 @@ namespace BiMatch {//Hopcroft-Karp算法，时间复杂度O(sqrt(V)*E)
     int first[MAXN];
     int idx;
     int Mx[MAXN], dx[MAXN];
-    int My[], dy[];//右边的点
-    bool used[];//右边的点
+    int My[], dy[];//鍙宠竟鐨勭偣
+    bool used[];//鍙宠竟鐨勭偣
     ll dis;
 
     void add(int a, int b) {

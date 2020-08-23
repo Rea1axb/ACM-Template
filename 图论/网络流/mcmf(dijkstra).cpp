@@ -1,18 +1,18 @@
 /* MCMF
- * Ê¹ÓÃ Johnson Ëã·¨ÓÅ»¯ dijsktra ¸ºÈ¨×î¶ÌÂ·
+ * ä½¿ç”¨ Johnson ç®—æ³•ä¼˜åŒ– dijsktra è´Ÿæƒæœ€çŸ­è·¯
  *
- * µ÷ÓÃ£º
- *     init(n) ³õÊ¼»¯
- *     solve(s, t) ¼ÆËã´ğ°¸
- *     add(u, v, f, cost)½¨Í¼
- *     cost - ·ÑÓÃ£¬ flow - Á÷Á¿
+ * è°ƒç”¨ï¼š
+ *     init(n) åˆå§‹åŒ–
+ *     solve(s, t) è®¡ç®—ç­”æ¡ˆ
+ *     add(u, v, f, cost)å»ºå›¾
+ *     cost - è´¹ç”¨ï¼Œ flow - æµé‡
  */
 namespace MCMF {
     struct edge {
         int u, v;
         int next;
-        ll f;//±ßµÄÁ÷Á¿
-        ll cost;//±ßµÄ»¨·Ñ
+        ll f;//è¾¹çš„æµé‡
+        ll cost;//è¾¹çš„èŠ±è´¹
     } e[MAXM * 2];
     struct node {
         int id;
@@ -24,8 +24,8 @@ namespace MCMF {
     ll H[MAXN];
     int idx;
     int n, s, t;
-    ll flow, cost;//Á÷Á¿ºÍ»¨·Ñ
-    ll dist[MAXN], path_v[MAXN], path_e[MAXN];//path_v¼ÇÂ¼ÉÏÒ»¸öµã£¬path_e¼ÇÂ¼ÉÏÒ»Ìõ±ß
+    ll flow, cost;//æµé‡å’ŒèŠ±è´¹
+    ll dist[MAXN], path_v[MAXN], path_e[MAXN];//path_vè®°å½•ä¸Šä¸€ä¸ªç‚¹ï¼Œpath_eè®°å½•ä¸Šä¸€æ¡è¾¹
 
     void add_edge(int u, int v, ll f, ll cost) {
         e[idx].v = v;

@@ -1,6 +1,6 @@
 /*
-DFSÓÅ»¯£ºÓÃdfs£¨Õ»£©´úÌæ¶ÓÁÐ
-Ò»°ãÓÃÓÚÅÐ¶Ï¸º»·£¬Ã»¸º»·±ð×÷ËÀ
+DFSä¼˜åŒ–ï¼šç”¨dfsï¼ˆæ ˆï¼‰ä»£æ›¿é˜Ÿåˆ—
+ä¸€èˆ¬ç”¨äºŽåˆ¤æ–­è´ŸçŽ¯ï¼Œæ²¡è´ŸçŽ¯åˆ«ä½œæ­»
 */
 bool vis[MAXN];
 int path[MAXN];
@@ -14,8 +14,8 @@ bool spfa(int s)
         if(dist[v]<dist[s]+w){
             dist[v] = dist[s] + w;
             path[v] = s;
-            if(vis[v]) return 0;//ÓÐ¸º»·
-            if(!spfa(v)) return 0;//ÓÐ¸º»·
+            if(vis[v]) return 0;//æœ‰è´ŸçŽ¯
+            if(!spfa(v)) return 0;//æœ‰è´ŸçŽ¯
         }
     }
     vis[s] = 0;

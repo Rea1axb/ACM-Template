@@ -5,14 +5,14 @@ int lowbit(int x) {
     return x & (-x);
 }
 
-void updata(int i, int k) {//在i位置加上k
+void updata(int i, int k) {//鍦╥浣嶇疆鍔犱笂k
     while (i <= n) {
         c[i] += k;
         i += lowbit(i);
     }
 }
 
-ll getsum(int i) {//求A[1] + A[2] + ... + A[i]
+ll getsum(int i) {//姹侫[1] + A[2] + ... + A[i]
     ll res = 0;
     while (i > 0) {
         res += c[i];
@@ -36,6 +36,6 @@ void init(int _n) {
 };
 BIT::init(n);
 BIT::change(i, a[i]);
-//i位置加上k
+//i浣嶇疆鍔犱笂k
 BIT::change(i, k);
-ans = query(l, r);//多组数据时要考虑其他组测试数据的影响
+ans = query(l, r);//澶氱粍鏁版嵁鏃惰鑰冭檻鍏朵粬缁勬祴璇曟暟鎹殑褰卞搷

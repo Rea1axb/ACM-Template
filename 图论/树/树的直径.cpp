@@ -1,10 +1,10 @@
 /*
-Ò»°ãµÄÊ÷µÄÖ±¾¶¿ÉÒÔÓÃÁ½±ébfsÇóµÃ
-µ±Ê÷µÄ±ßÈ¨ÓÐ¸ºÖµÊ±£¬ÎÞ·¨ÓÃÁ½±ébfs
+ä¸€èˆ¬çš„æ ‘çš„ç›´å¾„å¯ä»¥ç”¨ä¸¤ébfsæ±‚å¾—
+å½“æ ‘çš„è¾¹æƒæœ‰è´Ÿå€¼æ—¶ï¼Œæ— æ³•ç”¨ä¸¤ébfs
 */
 int vis[MAXN];
-int d[MAXN];//d[x]:´Ó½Úµã x ³ö·¢×ßÏòÒÔ x Îª¸ùµÄ×ÓÊ÷£¬ÄÜ¹»µ½´ïµÄ×îÔ¶½ÚµãµÄ¾àÀë
-int len;//Ê÷µÄÖ±¾¶
+int d[MAXN];//d[x]:ä»ŽèŠ‚ç‚¹ x å‡ºå‘èµ°å‘ä»¥ x ä¸ºæ ¹çš„å­æ ‘ï¼Œèƒ½å¤Ÿåˆ°è¾¾çš„æœ€è¿œèŠ‚ç‚¹çš„è·ç¦»
+int len;//æ ‘çš„ç›´å¾„
 void dp(int x) {
     vis[x] = 1;
     for (int i = first[x]; i != -1; i = e[i].next) {

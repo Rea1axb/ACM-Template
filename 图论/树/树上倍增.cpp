@@ -1,9 +1,9 @@
 /*
-���ϱ����ı����Ƕ����Ʋ��
+树上倍增的本质是二进制拆分
 */
 const int DEG = 20;
-int deg[MAXN];//������
-int fa[MAXN][DEG];//��ͬ�����ʾ�����岻һ���������޸ģ������ʾ���ĵ�2^i�����ȡ�
+int deg[MAXN];//点的深度
+int fa[MAXN][DEG];//不同问题表示的意义不一样，可以修改，这里表示结点的第2^i个祖先。
 void init() {
     fill(deg, deg + n + 1, 0);
 }
@@ -11,25 +11,25 @@ void bfs(int root) {
     deg[root] = 1;
     queue<int> q;
     q.push(root);
-    fa[root][0] = root;//���¸��ڵ�ĵ�һ������
+    fa[root][0] = root;//更新根节点的第一个祖先
     while (!q.empty()) {
         int cur = q.front();
         q.pop();
         for (int i = 1; i < DEG; i++) {
-            fa[cur][i] = fa[fa[cur][i-1]][i-1];//���ݵ�һ�����ȣ��𲽸��µ�2^i������
+            fa[cur][i] = fa[fa[cur][i-1]][i-1];//根据第一个祖先，逐步更新第2^i个祖先
         }
         for (int i = first[cur]; i != -1; i = e[i].next) {
             int v = e[i].v;
             if (deg[v]) continue;
             deg[v] = deg[cur] + 1;
-            fa[v][0] = cur;//����v�ĵ�һ�����ȣ���ͬ����ĸ��·�ʽ��ͬ
+            fa[v][0] = cur;//更新v的第一个祖先，不同问题的更新方式不同
             q.push(v);
         }
     }
 }
 
 /*
-k�����Ȳ�ѯ
+k级祖先查询
 */
 int kthfa(int u, int k) {
     int bit = 0;
@@ -42,12 +42,12 @@ int kthfa(int u, int k) {
 }
 
 /*
-���ӣ���ʼʱ���е����ǽڵ� u ��Ȩֵ���� u �� v ��·���У����һ�����Ȩֵ��������
-��������������е������ʸ��µĴ�����
+例子：开始时手中的数是节点 u 的权值，从 u 到 v 的路径中，如果一个点的权值大于手中
+的数，则更新手中的数，问更新的次数。
 */
 const int DEG = 20;
 int deg[MAXN];
-int fa[MAXN][DEG];//��ʾ�ӽڵ����ϣ��� 2^i ���ȸýڵ�Ȩֵ��ĵ�
+int fa[MAXN][DEG];//表示从节点往上，第 2^i 个比该节点权值大的点
 void bfs(int root) {
     deg[root] = 1;
     queue<int> q;

@@ -1,10 +1,10 @@
 /*
-SUMD[x][y]:ÒÔ(x,y)ÎªÓÒÏÂ½Ç£¬(1,1)Îª×óÉÏ½ÇµÄ²î·Ö¾ØÕóÖ®ºÍ
+SUMD[x][y]:ä»¥(x,y)ä¸ºå³ä¸‹è§’ï¼Œ(1,1)ä¸ºå·¦ä¸Šè§’çš„å·®åˆ†çŸ©é˜µä¹‹å’Œ
 A[1][1] + ... + A[1][y] + A[2][1] + ... + A[x][y]
 =(x + 1)*(y + 1)*SUMD[x][y] - (y + 1) * SUMD[x][y] * i - (x + 1) * SUMD[x][y] * j
 + SUMD[x][y] * i * j
 
-Òò´ËÓÃ4¸öÊ÷×´Êı×é·Ö±ğÎ¬»¤£º
+å› æ­¤ç”¨4ä¸ªæ ‘çŠ¶æ•°ç»„åˆ†åˆ«ç»´æŠ¤ï¼š
 sum1[i][j]:D[i][j]
 sum2[i][j]:D[i][j]*i
 sum3[i][j]:D[i][j]*j
@@ -20,7 +20,7 @@ int lowbit(int x) {
     return x & (-x);
 }
 
-void updata(int x, int y, int k) {//ÔÚ(x, y)¼ÓÉÏk
+void updata(int x, int y, int k) {//åœ¨(x, y)åŠ ä¸Šk
     ll tmpx = x;
     ll tmpy = y;
     while (x <= n) {
@@ -36,7 +36,7 @@ void updata(int x, int y, int k) {//ÔÚ(x, y)¼ÓÉÏk
     }
 }
 
-ll getsum(int x, int y) {//Çó×óÉÏ½ÇÎª(1, 1)£¬ÓÒÏÂ½ÇÎª(x, y)µÄ¾ØÕóºÍ
+ll getsum(int x, int y) {//æ±‚å·¦ä¸Šè§’ä¸º(1, 1)ï¼Œå³ä¸‹è§’ä¸º(x, y)çš„çŸ©é˜µå’Œ
     ll res = 0;
     ll tmpx = x;
     ll tmpy = y;
@@ -81,9 +81,9 @@ void init(int _n, int _m) {
 BIT::init(n, m);
 BIT::change(i, j, i, j, k);
 
-//×óÉÏ½ÇÎª(x1, y1),ÓÒÏÂ½ÇÎª(x2, y2)µÄ¾ØÕó¼ÓÉÏk
+//å·¦ä¸Šè§’ä¸º(x1, y1),å³ä¸‹è§’ä¸º(x2, y2)çš„çŸ©é˜µåŠ ä¸Šk
 BIT::change(x1, y1, x2, y2, k);
 
-//×óÉÏ½ÇÎª(x1, y1)£¬ÓÒÏÂ½ÇÎª(x2, y2)µÄ¾ØÕóºÍ
+//å·¦ä¸Šè§’ä¸º(x1, y1)ï¼Œå³ä¸‹è§’ä¸º(x2, y2)çš„çŸ©é˜µå’Œ
 ans = BIT::query(x1, y1, x2, y2);
 

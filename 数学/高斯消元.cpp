@@ -1,8 +1,8 @@
 const double EPS = 1e-8;
 typedef vector<double> vec;
 typedef vector<vec> mat;
-//½â Ax = b
-//ÎÞ½â»òÎÞÇî¶à½âÊ±·µ»ØÒ»¸ö³¤¶ÈÎª0µÄÊý×é
+//è§£ Ax = b
+//æ— è§£æˆ–æ— ç©·å¤šè§£æ—¶è¿”å›žä¸€ä¸ªé•¿åº¦ä¸º0çš„æ•°ç»„
 vec gauss_jordan(const mat& A, const vec& b) {
     int n = A.size();
     mat B(n, vec(n + 1));
@@ -16,7 +16,7 @@ vec gauss_jordan(const mat& A, const vec& b) {
             if (abs(B[j][i]) > abs(B[pivot][i])) pivot = j;
         }
         swap(B[i], B[pivot]);
-        if (abs(B[i][i]) < EPS) return vec();//ÎÞ½â»òÎÞÇî¶à½â
+        if (abs(B[i][i]) < EPS) return vec();//æ— è§£æˆ–æ— ç©·å¤šè§£
         for (int j = i + 1; j <= n; j++) B[i][j] /= B[i][i];
         for (int j = 0; j < n; j++) {
             if (i != j) {
