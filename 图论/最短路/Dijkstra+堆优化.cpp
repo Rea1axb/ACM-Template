@@ -1,6 +1,7 @@
 struct node{
-    int id,cost;
-    node(int a,int b):id(a),cost(b){}
+    int id;
+    ll cost;
+    node(int a,ll b):id(a),cost(b){}
     bool operator < (const node &t) const
     {
         return t.cost < cost;
@@ -11,7 +12,7 @@ void dijkstra(int x)
     priority_queue<node> q;
     for(int i = 1;i <= n;i++){
         vis[i] = 0;
-        dist[i] = INF; 
+        dist[i] = INF;
     }
     dist[x] = 0;
     q.push(node(x,0));
