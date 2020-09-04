@@ -1,0 +1,19 @@
+%\begin{document}
+\paragraph{Polya计数}~{}
+\\
+置换群$G= \left \{ P_{1},P_{2},\cdot \cdot \cdot ,P_{n} \right \}$\\
+$C(P_{i})$:置换$P_{i}$中循环的数量。\\
+$m$:染色数\\
+\[ L=\frac{\sum_{i=1}^{n}m^{C(P_{i})}}{\left | G \right |} \]
+\paragraph{POJ-2154 Color}~{}
+\paragraph{题意}~{}
+\\
+有一根由$N$个珠子组成的项链，每个珠子能染$N$种颜色，一共能组成多少种不同的项链？旋转相同算同一种。$N\leq1e9$
+\paragraph{题解}~{}
+\\
+考虑两类置换：不动、旋转\\
+1.不动：有$N$个循环，循环节为1。\\
+2.旋转：假设旋转$k$次，可以得到$gcd(N, k)$个循环，循环节为 $\frac{N}{gcd(N,k)}$。旋转$k$次的染色方案数就是$N^{gcd(N,k)}$。答案就是所有的方案数相加除以$N$。但是$N$是$1e9$，无法枚举$k$，不过，$gcd(N, k)$只有有限个不同的值，就可以考虑把$gcd(N, k)$相同的情况进行合并计算，那么一直找不同的$gcd(N, k)$，显然该值是$N$的因数，假设$d$是$N$的一个因数，我们要统计的就是$ gcd(N, k) = d$的$k$的数量$t$，$k$一定是$d$的倍数，于是$k$就可以写成$k = t * d$，$d = gcd(N, k) = gcd(N, t * d) = d * gcd(\frac{N}{d}, t)$，所以$gcd(\frac{N}{d}, t) = 1$，因为$k = t * d < N$，所以$t < \frac{N}{d}$，$t$的数量就是$\frac{N}{d}$的欧拉函数，即$\Phi{(\frac{N}{d})}$。\\
+最终要计算的式子为：\\
+\[ L = \frac{1}{N}\sum_{N\%d==0}(N^d\Phi{(\frac{N}{d})}) = \sum_{N\%d==0}(N^{d-1}\Phi{(\frac{N}{d})}) \]
+%\end{document}

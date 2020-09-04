@@ -31,7 +31,7 @@ namespace ST {
         return max(f[l][lg], f[r - (1 << lg) + 1][lg]);
     }
 
-};
+}
 ST::init(); //最开始初始化，before T--
 ST::n = n;
 for (int i = 1; i <= n; i++)
