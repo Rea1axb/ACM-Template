@@ -1,5 +1,6 @@
 //把读入的数据压入到一个vector中
 vector<ll> lisan;
+lisan.clear();
 for (int i = 1; i <= n; i++) {
     scanf("%lld", &a[i]);
     lisan.push_back(a[i]);
