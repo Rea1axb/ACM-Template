@@ -10,7 +10,7 @@ void dp(int x) {
     for (int i = first[x]; i != -1; i = e[i].next) {
         int v = e[i].v;
         if (vis[v]) continue;
-        dp[v];
+        dp(v);
         len = max(len, d[x] + d[v] + e[i].w);
         d[x] = max(d[x], d[v] + e[i].w);
     }
