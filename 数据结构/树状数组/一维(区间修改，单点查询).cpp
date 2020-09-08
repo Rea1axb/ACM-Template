@@ -37,8 +37,7 @@ ll query(int x) {
 
 void init(int _n) {
     n = _n;
-    fill(sum1, sum1 + n + 1, 0);
-    fill(sum2, sum2 + n + 1, 0);
+    fill(c, c + n + 1, 0);
 }
 };
 BIT::init(n);
