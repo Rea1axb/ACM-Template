@@ -1,5 +1,7 @@
+<SG函数> <SG函数.cpp> <SG函数.tex> <>
+<Multi-SG> <Multi-SG.cpp> <Multi-SG.tex> <>
+<ANTI-SG> <> <ANTI-SG.tex> <>
 <Bash博弈> <Bash博弈.cpp>
 <Nim博弈> <Nim博弈.cpp>
-<非常规> <非常规.cpp>
 <威佐夫博弈> <威佐夫博弈.cpp>
 <威佐夫博弈扩展> <威佐夫博弈扩展.cpp>
