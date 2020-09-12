@@ -12,7 +12,7 @@ struct SegmentTree {
         add += val;
     }
 
-} T[MAXM << 2];
+} T[MAXN << 2];
 
 void push_up(int rt) {
     T[rt].sum = T[lc].sum + T[rc].sum;
@@ -56,6 +56,7 @@ ll query(int rt, int l, int r) {
         return T[rt].sum;
     push_down(rt);
     ll res = 0;
+//    ll res = INF;
     if (l <= tmid)
         res += query(lc, l, r);
     if (r > tmid)
