@@ -8,7 +8,7 @@ struct Tree {
     int l, r;
     ll sum;
 }T[MAXN * 40];
-int root[MAXN], val[MAXN];
+int root[MAXN];
 int tol;
 vector<int> lisan;
 
@@ -61,6 +61,7 @@ int query(int l, int r, int pre, int now, int k) { //区间 <= k 的数量
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
+    vector<int> val(n + 1);
     lisan.clear();
     init();
     for (int i = 1; i <= n; i++) {

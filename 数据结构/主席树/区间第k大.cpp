@@ -8,7 +8,7 @@ struct Tree {
     int l, r;
     ll sum;
 }T[MAXN * 40];
-int root[MAXN], val[MAXN];
+int root[MAXN];
 int tol;
 vector<int> lisan;
 
@@ -46,6 +46,7 @@ int main() {
     scanf("%d%d", &n, &m);
     lisan.clear();
     init();
+    vector<int> val(n + 1);
     for (int i = 1; i <= n; i++) {
         scanf("%d", &val[i]);
         lisan.push_back(val[i]);

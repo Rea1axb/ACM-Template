@@ -8,7 +8,7 @@ struct Tree {
     int l, r;
     ll sum;
 }T[MAXN * 40];
-int root[MAXN], val[MAXN];
+int root[MAXN];
 int tol;
 map<int,int> pos;
 
@@ -42,6 +42,7 @@ int main() {
     int n;
     scanf("%d", &n);
     init();
+    vector<int> val(n + 1);
     for (int i = 1; i <= n; i++) {
         scanf("%d", &val[i]);
         if (!pos.count(val[i])) {
