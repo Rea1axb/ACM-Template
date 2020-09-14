@@ -22,7 +22,7 @@ void update(int l, int r, int &now, int pre, int pos) {
         update(mid + 1, r, T[now].r, T[pre].r, pos);
 }
 
-int query(int l, int r, int pre, int now, int k) { //k的后继
+int query(int l, int r, int pre, int now, int k) { //k的后继, >=k的最小值
     if (l == r) { //到达叶子节点
         if (T[now].sum - T[pre].sum > 0) { //如果这个值出现过就返回这个值，没有就返回INF
             return l;
@@ -57,7 +57,7 @@ int query(int l, int r, int pre, int now, int k) { //k的后继
         return ans;
     }
 }
-//int query(int l, int r, int pre, int now, int k) {
+//int query(int l, int r, int pre, int now, int k) { //k的前驱, <=k的最大值
 //    if (l == r) {
 //        if (T[now].sum - T[pre].sum > 0) {
 //            return l;
@@ -91,3 +91,7 @@ int query(int l, int r, int pre, int now, int k) { //k的后继
 //        return ans;
 //    }
 //}
+
+int ask(int l, int r, int k) {
+    return query(1, n, root[l - 1], root[r], k);
+}

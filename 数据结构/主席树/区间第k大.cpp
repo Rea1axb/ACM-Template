@@ -41,6 +41,11 @@ int query(int l, int r, int pre, int now, int k) {
     else
         return query(mid + 1, r, T[pre].r, T[now].r, k - sum);
 }
+
+int ask(int l, int r, int k) {
+    return query(1, n, root[l - 1], root[r], k);
+}
+
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
@@ -59,7 +64,7 @@ int main() {
     for (int i = 1; i <= m; i++) {
         int l, r, k;
         scanf("%d%d%d", &l, &r, &k);
-        int ans = lisan[query(1, n, root[l - 1], root[r], k)- 1];
+        int ans = lisan[ask(l, r, k) - 1];
         printf("%d\n", ans);
     }
     return 0;

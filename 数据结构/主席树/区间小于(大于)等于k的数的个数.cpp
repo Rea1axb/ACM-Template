@@ -58,6 +58,10 @@ int query(int l, int r, int pre, int now, int k) { //区间 <= k 的数量
 //    return res;
 //}
 
+int ask(int l, int r, int k) {
+    return query(1, n, root[l - 1], root[r], k);
+}
+
 int main() {
     int n, m;
     scanf("%d%d", &n, &m);
@@ -78,7 +82,7 @@ int main() {
         scanf("%d%d%d", &l, &r, &k);
         int posk = getid(k);
         if (lisan[posk - 1] != k) posk--; // <= k
-        int ans = query(1, n, root[l - 1], root[r], posk);
+        int ans = ask(l, r, posk);
         printf("%d\n", ans);
     }
     return 0;
