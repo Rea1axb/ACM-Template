@@ -54,7 +54,7 @@ namespace LCA {
 };
 namespace VirtualTree {
     // 虚树部分
-    // 单向边，父节点指向子节点，建边要用到时再将vfirst置为=1
+    // 单向边，父节点指向子节点，建边要用到时再将vfirst置为-1
     // 若建双向边可在建边前加vfirst特判
     // 抄完板子查找first，idx，e查错
     struct vedge {

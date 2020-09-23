@@ -5,8 +5,8 @@ const int inf=0x3f3f3f3f;
 const double pi= acos(-1.0);
 const double esp=1e-6;
 const int MAXN=310;
-int aug[MAXN][MAXN];<span style="background-color: rgb(255, 255, 255);">
-//增广矩阵行数为m,分别为0到m-1,列数为n+1,分别为0到n.</span>
+int aug[MAXN][MAXN];
+//增广矩阵行数为m,分别为0到m-1,列数为n+1,分别为0到n.
 int x[MAXN];//解集
 int free_num;
 int m,n;//m个方程，n个变元
