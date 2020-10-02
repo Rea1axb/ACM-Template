@@ -205,9 +205,9 @@ Treap::del(val);
 ans = Treap::get_rank(val);
 //第k个数
 ans = Treap::get_kth(Treap::root, k);
-//前驱
+//前驱（小于）
 ans = Treap::get_pre(val);
-//后继
+//后继（大于）
 ans = Treap::get_next(val);
 //打印输出数列
 vector<ll> res;
