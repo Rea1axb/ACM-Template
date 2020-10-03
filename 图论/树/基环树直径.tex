@@ -1,0 +1,10 @@
+\paragraph{基环树直径}~{}
+\\
+对于一棵基环树，先找到环$loop$，设以$loop_i$为根的非环子树中，$loop_i$最远能到达的距离为$d_i$，该子树的朴素直径为$len_i$，那么这棵基环树的直径为：\\
+$$ans=max\begin{cases}
+max(len_i)\\
+max(d_i+d_j+dis(loop_i,loop_j))\\
+\end{cases}$$
+对于第二个式子的$dis(loop_i,loop_j)$，可以将环拆成链并复制一倍，预处理前缀和后就可以转化为:\\
+$$\max_{i<j}(d_i+d_j+sum_j-sum_i)$$
+计算该式子可以枚举$j$，单调队列维护$d_i-sum_i$即可\\
