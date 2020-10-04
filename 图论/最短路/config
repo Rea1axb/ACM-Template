@@ -1,4 +1,3 @@
-<SPFA> <> <> <SPFA>
 <SPFA(可判负环)> <SPFA(可判负环).cpp>
 <SPFA(SLF+容错)> <SPFA(SLF+容错).cpp>
 <SPFA(LLL优化)> <SPFA(LLL优化).cpp>
@@ -6,3 +5,4 @@
 <Dijkstra+堆优化> <Dijkstra+堆优化.cpp>
 <Floyd> <Floyd.cpp>
 <第k短路> <第k短路.cpp>
+<差分约束> <差分约束.cpp>
