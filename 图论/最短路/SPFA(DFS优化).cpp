@@ -1,23 +1,30 @@
 /*
 DFS优化：用dfs（栈）代替队列
-一般用于判断负环，没负环别作死
+一般用于判断负环，可能会更慢
 */
+bool flag; //flag == 1表示存在负环
 bool vis[MAXN];
-int path[MAXN];
-bool spfa(int s)
-{
-    vis[s] = 1;
-    for(int i = first[s];i!=-1;i=e[i].next){
+ll dist[MAXN];
+
+for (int i = 1; i <= n; i++) {
+    dist[i] = INF;
+    vis[i] = 0;
+}
+dist[s] = 0;
+
+void spfa(int x) {
+    if (vis[x]) {
+        flag = 1;
+        return;
+    }
+    vis[x] = 1;
+    for (int i = first[x]; i != -1; i = e[i].next) {
         int v = e[i].v;
-        if(v == path[s]) continue;
-        ll w = e[i].w;
-        if(dist[v]<dist[s]+w){
-            dist[v] = dist[s] + w;
-            path[v] = s;
-            if(vis[v]) return 0;//有负环
-            if(!spfa(v)) return 0;//有负环
+        if (dist[v] > dist[x] + e[i].w) {
+            dist[v] = dist[x] + e[i].w;
+            spfa(v);
+            if (flag) return;
         }
     }
-    vis[s] = 0;
-    return 1;
+    vis[x] = 0;
 }
