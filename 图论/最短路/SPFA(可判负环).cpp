@@ -29,7 +29,7 @@ bool spfa(int start)
                     inq[v] = 1;
                     q.push(v);
                     if(++cnt[v] > n) return 0;
-                    //若入队列次数大于n，说明存在环
+                    //若入队列次数大于n，说明存在负环
                 }
             }
         }

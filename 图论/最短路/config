@@ -1,5 +1,5 @@
 <SPFA> <> <> <SPFA>
-<SPFA(可判环)> <SPFA(可判环).cpp>
+<SPFA(可判负环)> <SPFA(可判负环).cpp>
 <SPFA(SLF+容错)> <SPFA(SLF+容错).cpp>
 <SPFA(LLL优化)> <SPFA(LLL优化).cpp>
 <SPFA(DFS优化)> <SPFA(DFS优化).cpp>
