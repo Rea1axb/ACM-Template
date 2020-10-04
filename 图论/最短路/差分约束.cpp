@@ -14,7 +14,6 @@ A-B=C 转化为 A-B>=C 和 A-B<=C
 bool inq[MAXN];
 ll dist[MAXN];
 int cnt[MAXN];
-int vis[MAXN];
 int spfa(int s) {
     for (int i = 0; i <= n; i++) {
         dist[i] = INF;
