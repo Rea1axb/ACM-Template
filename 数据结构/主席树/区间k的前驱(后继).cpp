@@ -1,7 +1,7 @@
 struct Tree {
     int l, r;
     ll sum;
-}T[MAXN * 40];
+}T[MAXN * 40];//如果update次数很多要相应增大空间
 
 int root[MAXN];
 int tol;
