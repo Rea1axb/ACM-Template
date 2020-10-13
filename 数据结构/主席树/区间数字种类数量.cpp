@@ -24,9 +24,9 @@ void update(int l, int r, int &now, int pre, int pos, int add) {
     if (l == r) return;
     int mid = (l + r) >> 1;
     if (mid >= pos)
-        update(l, mid, T[now].l, T[pre].l, pos);
+        update(l, mid, T[now].l, T[pre].l, pos, add);
     else
-        update(mid + 1, r, T[now].r, T[pre].r, pos);
+        update(mid + 1, r, T[now].r, T[pre].r, pos, add);
 }
 
 int query(int l, int r, int rt, int left) {

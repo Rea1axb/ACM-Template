@@ -47,7 +47,7 @@ void get_loop(int u, int fa) { //找环
             pre[v] = u;
             get_loop(v, u);
         } else {
-            if (dfn[v] > dfn[u]) {
+            if (dfn[v] > dfn[u]) { //注意自环的影响
                 inloop[v] = 1;
                 loop.push_back(v);
                 while (v != u) {
