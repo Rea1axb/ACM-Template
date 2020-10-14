@@ -6,7 +6,10 @@ struct Matrix {
     Matrix(int n, int m) : n(n), m(m) {}
 
     void init() {
-        memset(v, 0, sizeof(v));
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= m; j++)
+                v[i][j] = 0;
+        }
     }
 
     void init1() {
