@@ -1,14 +1,22 @@
-inline int read(){//如果是long long，这行和下面一行int改ll
-    int x=0,f=1;
-    char ch=getchar();
-    while(ch<'0'||ch>'9'){
-        if(ch=='-')
-            f=-1;
-        ch=getchar();
+inline char nc() {
+    static char buf[100000], *p1 = buf, *p2 = buf;
+    if(p1 == p2) {
+        p2 = (p1 = buf) + fread(buf, 1, 100000, stdin);
+        if(p1 == p2) return EOF;
     }
-    while(ch>='0'&&ch<='9'){
-        x=(x<<1)+(x<<3)+(ch^48);
-        ch=getchar();
-    }
-    return x*f;
+    return *p1++;
+}
+inline void read(ll &x) {
+    char c = nc(), b = 1;
+    for (; !(c >= '0' && c <= '9'); c = nc())
+        if(c == '-') b = -1;
+    for (x = 0; c >= '0' && c <= '9'; x = x * 10 + c - '0', c = nc()) ;
+    x *= b;
+}
+inline void read(int &x) {
+    char c = nc(), b = 1;
+    for (; !(c >= '0' && c <= '9'); c = nc())
+        if(c == '-') b = -1;
+    for (x = 0; c >= '0' && c <= '9'; x = x * 10 + c - '0', c = nc()) ;
+    x *= b;
 }
