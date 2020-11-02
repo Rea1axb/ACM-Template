@@ -33,10 +33,10 @@ int main()//Windows
     do{
         if(cases) printf("#%d AC\n",cases);
         cases++;
-        system("data.exe > data.txt");
-        system("1.exe < data.txt > 1.txt");
-        system("2.exe < data.txt > 2.txt");
-    }while(!system("fc 1.txt 2.txt"));
+        system("data.exe > data.out");
+        system("1.exe < data.out > 1.out");
+        system("2.exe < data.out > 2.out");
+    }while(!system("fc 1.out 2.out"));
     printf("#%d WA",cases);
     return 0;
 }
