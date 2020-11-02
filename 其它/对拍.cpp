@@ -1,7 +1,7 @@
 //---------------data.cpp----------------
 int main()
 {
-    freopen("in","w",stdout);
+    //freopen("in","w",stdout); Linux加上
     srand(time(0));
     int n,m,q;
     n = rand()%100000;
@@ -20,8 +20,9 @@ int main()
 //----------------1.cpp&&2.cpp-----------------------
 int main()
 {
-    freopen("in","r",stdin);
-    freopen("1.out","w",stdout);
+    //Linux加上
+    //freopen("in","r",stdin);
+    //freopen("1.out","w",stdout);
     //freopen("2.out","w",stdout);
     .....
 }
