@@ -45,11 +45,12 @@ namespace Tarjan {
                     cut[u] = 1;//该点为割点
                     cnt++;
                     res[cnt].clear();
-                    while (stk.top() != u) {//u和弹出元素构成一个点双，注意割点不弹出
+                    while (1) {//u和弹出元素构成一个点双
                         int cur = stk.top();
+                        stk.pop();
                         resnum[cur] = cnt;
                         res[cnt].push_back(cur);
-                        stk.pop();
+                        if (cur == v) break;
                     }
                     resnum[u] = cnt;
                     res[cnt].push_back(u);
