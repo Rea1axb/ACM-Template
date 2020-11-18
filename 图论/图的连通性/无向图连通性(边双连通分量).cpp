@@ -18,7 +18,7 @@ namespace Tarjan {
     int dfn[MAXN];
     int low[MAXN];
     stack<int> stk;
-    int n;//节点数
+    int n, m;//节点数
     int cnt;//双连通分量个数
     int cutedge[MAXM * 2];//某条边是否是桥
     int resnum[MAXN];//某个点所属的双连通分量编号
@@ -53,10 +53,11 @@ namespace Tarjan {
         }
     }
 
-    void init(int _n) {
+    void init(int _n, int _m) {
         n = _n;
+        m = _m;
         fill(dfn, dfn + n + 1, 0);
-        fill(cutedge, cutedge + n + 1, 0);
+        fill(cutedge, cutedge + m + m + 1, 0);
         fill(resnum, resnum + n + 1, 0);
         while (!stk.empty()) stk.pop();
         cnt = 0;
