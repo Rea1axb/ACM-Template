@@ -45,7 +45,7 @@ namespace Tarjan {
                     cut[u] = 1;//该点为割点
                     cnt++;
                     res[cnt].clear();
-                    while (1) {//u和弹出元素构成一个点双
+                    while (!stk.empty()) {//u和弹出元素构成一个点双
                         int cur = stk.top();
                         stk.pop();
                         resnum[cur] = cnt;
