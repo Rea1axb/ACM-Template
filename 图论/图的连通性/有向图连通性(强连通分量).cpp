@@ -50,11 +50,12 @@ namespace Tarjan {
         }
         if (low[u] == dfn[u]) {
             cnt++;
+            res[cnt].clear();
             while (!stk.empty()) {
                 int cur = stk.top();
+                stk.pop();
                 resnum[cur] = cnt;
                 res[cnt].push_back(cur);
-                stk.pop();
                 if (cur == u) break;
             }
         }
