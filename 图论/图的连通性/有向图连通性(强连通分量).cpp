@@ -64,7 +64,6 @@ namespace Tarjan {
     void init(int _n) {
         n = _n;
         fill(dfn, dfn + n + 1, 0);
-        fill(cutedge, cutedge + n + 1, 0);
         fill(resnum, resnum + n + 1, 0);
         fill(vis, vis + n + 1, 0);
         while (!stk.empty()) stk.pop();
