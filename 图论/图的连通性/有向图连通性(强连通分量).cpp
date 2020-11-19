@@ -56,6 +56,7 @@ namespace Tarjan {
                 stk.pop();
                 resnum[cur] = cnt;
                 res[cnt].push_back(cur);
+                vis[cur] = 0;
                 if (cur == u) break;
             }
         }
