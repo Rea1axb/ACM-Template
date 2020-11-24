@@ -14,7 +14,7 @@ namespace MCMF {
     int first[MAXN];
     int idx;
     int n, s, t;
-    ll flow, ans, sum;
+    ll flow, cost, sum;
     ll dist[MAXN];
     bool aug[MAXN];
 
@@ -42,7 +42,7 @@ namespace MCMF {
         if (!lim)
             return 0;
         if (u == t)
-            return ans += lim * sum, lim;
+            return cost += lim * sum, lim;
         ll f = 0;
         aug[u] = 1;
         for (int i = first[u]; i != -1; i = e[i].next) {
@@ -96,7 +96,7 @@ namespace MCMF {
         s = _s;
         t = _t;
         ll res;
-        flow = ans = sum = 0;
+        flow = cost = sum = 0;
         do
             do
                 fill(aug, aug + n + 1, 0);

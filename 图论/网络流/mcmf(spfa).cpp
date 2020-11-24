@@ -8,7 +8,7 @@ namespace MCMF {
     int first[MAXN];
     int idx;
     int n, s, t;
-    ll flow, ans;
+    ll flow, cost;
     ll dist[MAXN];
     bool vis[MAXN];
     int pre[MAXN];
@@ -68,7 +68,7 @@ namespace MCMF {
         s = _s;
         t = _t;
         ll res;
-        flow = ans = 0;
+        flow = cost = 0;
         while (spfa()) {
             res = INF + 1;
             for (int i = pre[t]; i != -1; i = pre[e[i ^ 1].v]) {
@@ -81,7 +81,7 @@ namespace MCMF {
                 e[i].f -= res;
                 e[i ^ 1].f += res;
             }
-            ans += dist[t] * res;
+            cost += dist[t] * res;
         }
     }
 }
