@@ -137,7 +137,7 @@ namespace Treap {
 
     int get_rank(ll val) { //查询排名
         split_val(root, val - 1, x, y);
-        int res = Tree[x].sz - 1;
+        int res = Tree[x].sz + 1;
         root = merge(x, y);
         return res;
     }
