@@ -159,6 +159,7 @@ namespace Treap {
 
     ll get_pre(ll val) { //查询前驱
         split_val(root, val - 1, x, y);
+        if (Tree[x].sz == 0) return -INF_MAX;
         ll res = get_kth(x, Tree[x].sz);
         root = merge(x, y);
         return res;
@@ -166,6 +167,7 @@ namespace Treap {
 
     ll get_next(ll val) { //查询后继
         split_val(root, val, x, y);
+        if (Tree[y].sz == 0) return INF_MAX;
         ll res = get_kth(y, 1);
         root = merge(x, y);
         return res;
