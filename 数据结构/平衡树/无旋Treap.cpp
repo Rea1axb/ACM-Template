@@ -2,6 +2,7 @@ namespace Treap {
     struct node {
         int ch[2];
         ll val; //权值
+        ll sum;
         int sz; //子树大小
         int rnd;
         int tag; //标记,以区间翻转为例
@@ -21,6 +22,7 @@ namespace Treap {
         ++cnt;
         Tree[cnt].sz = 1;
         Tree[cnt].val = val;
+        Tree[cnt].sum = val;
         Tree[cnt].rnd = rand();
         Tree[cnt].tag = 0;
         return cnt;
@@ -30,6 +32,7 @@ namespace Treap {
         int l = Tree[x].ch[0];
         int r = Tree[x].ch[1];
         Tree[x].sz = 1 + Tree[l].sz + Tree[r].sz;
+        Tree[x].sum = Tree[x].val + Tree[l].sum + Tree[r].sum;
     }
 
     void pushtag(int now) { //区间翻转为例
