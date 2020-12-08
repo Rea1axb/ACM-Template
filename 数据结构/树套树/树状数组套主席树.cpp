@@ -1,3 +1,8 @@
+/*
+修改时间复杂度：O(log^2(n))
+查询时间复杂度：O(log^2(n))
+*/
+
 //版本1
 struct Tree {
     int l, r;
