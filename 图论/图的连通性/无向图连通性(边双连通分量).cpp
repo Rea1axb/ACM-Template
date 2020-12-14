@@ -17,6 +17,7 @@ low[x]:记录x子树中的点能够通过回边抵达点的最小时间戳
 namespace Tarjan {
     int dfn[MAXN];
     int low[MAXN];
+    int fedge[MAXN];//记录到某个点的树边
     stack<int> stk;
     int n, m;//节点数
     int cnt;//双连通分量个数
@@ -36,7 +37,7 @@ namespace Tarjan {
                 if (low[v] > dfn[u]) {
                     cutedge[i] = cutedge[i ^ 1] = 1;//该边为桥
                 }
-            } else if (v != fa) {//回边,如果有重边记录的应该是到达该点的树边
+            } else if (i != (fedge[u] ^ 1)) {//可能有重边，记录的是到达该点的树边
                 low[u] = min(low[u], dfn[v]);
             }
         }
@@ -59,6 +60,7 @@ namespace Tarjan {
         fill(dfn, dfn + n + 1, 0);
         fill(cutedge, cutedge + m + m + 1, 0);
         fill(resnum, resnum + n + 1, 0);
+        fill(fedge, fedge + n + 1, -1);
         while (!stk.empty()) stk.pop();
         cnt = 0;
         times = 0;
@@ -70,6 +72,6 @@ namespace Tarjan {
                 dfs(i, -1);
         }
     }
-};
+}
 Tarjan::init(n);
 Tarjan::solve();
