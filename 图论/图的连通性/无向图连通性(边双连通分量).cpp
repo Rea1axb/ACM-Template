@@ -38,7 +38,7 @@ namespace Tarjan {
                     cutedge[i] = cutedge[i ^ 1] = 1;//该边为桥
                 }
             } else if (i != (fedge[u] ^ 1)) {//可能有重边，记录的是到达该点的树边
-                low[u] = min(low[u], dfn[v]);
+                low[u] = min(low[u], dfn[v]);//回边
             }
         }
         if (low[u] == dfn[u]) {
