@@ -1,3 +1,4 @@
+const int seed = 131;
 bool notp[MAXN * 2];
 int prime[MAXN * 2], pnum;
 void sieve(int n) {
@@ -37,7 +38,8 @@ struct TreeHash {
         for (auto v : G[u]) {
             dfs(v);
             sz[u] += sz[v];
-            f[u] = (f[u] + f[v] * prime[sz[v]] % mod) % mod;
+            f[u] = f[u] + f[v] * prime[sz[v] + seed]; //注意 sz[v] + seed 不能超过素数的数量
+            //f[u] = f[u] + f[v] * prime[G[v].size() + seed];
         }
     }
 
