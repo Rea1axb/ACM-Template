@@ -1,4 +1,4 @@
-bool notp[N];
+int notp[N];
 int prime[N],pnum;//prime里存素数
 void sieve()
 {
