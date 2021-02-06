@@ -10,7 +10,7 @@ struct frac {
         ll g = gcd(abs(up), low);
         this->up = up / g, this->low = low / g;
     }
-    frac operator + (const frac &b) const {
+    frac operator + (const frac &b) const { //可能会爆ll
         return frac(up * b.low + low * b.up, low * b.low);
     }
     frac operator - (const frac &b) const {
