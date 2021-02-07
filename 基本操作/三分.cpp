@@ -20,9 +20,9 @@ while (l < r) {
     ll lans = cal(lmid), rans = cal(rmid);
     if (lans <= rans) {
         r = rmid;
-        ans = max(lans, ans);
+        ans = min(lans, ans);
     } else {
         l = lmid;
-        ans = max(rans, ans);
+        ans = min(rans, ans);
     }
 }
