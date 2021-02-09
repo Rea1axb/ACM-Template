@@ -7,7 +7,7 @@
 struct Tree {
     int l, r;
     ll sum;
-}T[MAXN * 80];
+}T[MAXN * 80]; //空间够的话往大开，1e7级别
 int root[MAXN * 80], tol;
 int len;//权值上界
 void init(int up) {
@@ -97,8 +97,8 @@ namespace BIT {
     }
 }
 
-init(up);
-BIT::init(up);
+init(up + 5);
+BIT::init(n);
 BIT::change(i, a[i]);
 
 //将a[i]修改为val
@@ -114,7 +114,7 @@ ans = BIT::ask(l, r, k);
 struct Tree {
     int l, r;
     ll sum;
-}T[MAXN * 80];
+}T[MAXN * 80]; //空间够的话往大开，1e7级别
 int root[MAXN * 80], tol;
 int len;//权值上界
 void init(int up) {
@@ -183,7 +183,7 @@ namespace BIT {
     }
 }
 
-init(up);
+init(up + 5);
 BIT::init(n);
 BIT::change(i, a[i]);
 
@@ -215,7 +215,7 @@ int getid(ll x) {
 struct Tree {
     int l, r;
     ll sum;
-}T[MAXN * 80];
+}T[MAXN * 80]; //空间够的话往大开，1e7级别
 int root[MAXN * 80], tol;
 int len;//权值上界
 void init(int up) {
@@ -551,7 +551,7 @@ int main() {
     sort(lisan.begin(), lisan.end());
     lisan.erase(unique(lisan.begin(), lisan.end()), lisan.end());
     int up = lisan.size() + 1;
-    init(up);
+    init(up + 5);
     BIT::init(n);
     for (int i = 1; i <= n; i++) {
         BIT::change(i, getid(val[i]), 1);
