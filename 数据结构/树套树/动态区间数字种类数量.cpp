@@ -94,7 +94,7 @@ namespace BIT {
         n = _n;
     }
 }
-set<int> colorpos[MAXM]; //颜色的位置
+set<int> colorpos[COLORNUM]; //颜色的位置
 int nxt[MAXN], last[MAXN]; //链表
 
 //初始化
