@@ -98,7 +98,7 @@ namespace BIT {
 }
 
 init(up);
-BIT::init(n);
+BIT::init(up);
 BIT::change(i, a[i]);
 
 //将a[i]修改为val
