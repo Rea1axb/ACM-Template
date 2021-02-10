@@ -1,6 +1,6 @@
 #define lc rt<<1
 #define rc rt<<1|1
-#define tmid ((T[rt].l+T[rt].r)>>1)
+#define tmid (T[rt].l+T[rt].r>>1)
 
 struct SegmentTree {
     int l, r;
