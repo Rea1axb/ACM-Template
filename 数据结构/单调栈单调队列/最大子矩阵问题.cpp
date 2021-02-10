@@ -8,7 +8,7 @@ int main() {
     scanf("%d", &n);
     vector<ll> h(n + 2, 0), w(n + 2, 0);
     for (int i = 1; i <= n; i++) {
-        scanf("%lld%lld", &h[i], &w[i]);
+        scanf("%lld%lld", &h[i], &w[i]); //高度和宽度
     }
     stack<ll> stk;
     stk.push(0);
