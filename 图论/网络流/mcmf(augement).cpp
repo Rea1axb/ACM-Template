@@ -104,3 +104,15 @@ namespace MCMF {
         while (augment());
     }
 }
+
+//初始化
+MCMF::init(n);
+
+//建图
+MCMF::add(u, v, f, cost);
+
+//计算答案
+MCMF::solve(s, t);
+
+flow = MCMF::flow;
+cost = MCMF::cost;

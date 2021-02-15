@@ -25,6 +25,7 @@ namespace MCMF {
     int idx;
     int n, s, t;
     ll flow, cost;//流量和花费
+    //ll mincost;//最小费用
     ll dist[MAXN], path_v[MAXN], path_e[MAXN];//path_v记录上一个点，path_e记录上一条边
 
     void add_edge(int u, int v, ll f, ll cost) {
@@ -80,6 +81,7 @@ namespace MCMF {
         }
         flow += f;
         cost += f * H[t];
+        //mincost = min(mincost, cost); //最小费用可行流
         for (int v = t; v != s; v = path_v[v]) {
             e[path_e[v]].f -= f;
             e[path_e[v] ^ 1].f += f;
@@ -91,7 +93,20 @@ namespace MCMF {
         s = _s;
         t = _t;
         flow = cost = 0;
+        //mincost = INF;
         fill(H, H + n + 1, 0);
         while (dijkstra());
     }
 }
+
+//初始化
+MCMF::init(n);
+
+//建图
+MCMF::add(u, v, f, cost);
+
+//计算答案
+MCMF::solve(s, t);
+
+flow = MCMF::flow;
+cost = MCMF::cost;

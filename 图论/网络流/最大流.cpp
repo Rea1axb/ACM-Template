@@ -46,3 +46,14 @@ namespace MaxFlow {
         for (gap[0] = n; dep[s] <= n; flow += dfs(s, INF));
     }
 }
+
+//初始化
+MaxFlow::init(n);
+
+//建图
+MaxFlow::add_edge(u, v, f);
+
+//计算答案
+MaxFlow::solve(s, t);
+
+flow = MCMF::flow;

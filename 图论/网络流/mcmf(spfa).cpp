@@ -9,6 +9,7 @@ namespace MCMF {
     int idx;
     int n, s, t;
     ll flow, cost;
+    //ll mincost;//最小费用
     ll dist[MAXN];
     bool vis[MAXN];
     int pre[MAXN];
@@ -69,6 +70,7 @@ namespace MCMF {
         t = _t;
         ll res;
         flow = cost = 0;
+        //mincost = INF;
         while (spfa()) {
             res = INF + 1;
             for (int i = pre[t]; i != -1; i = pre[e[i ^ 1].v]) {
@@ -82,6 +84,19 @@ namespace MCMF {
                 e[i ^ 1].f += res;
             }
             cost += dist[t] * res;
+            //mincost = min(mincost, cost); //最小费用可行流
         }
     }
 }
+
+//初始化
+MCMF::init(n);
+
+//建图
+MCMF::add(u, v, f, cost);
+
+//计算答案
+MCMF::solve(s, t);
+
+flow = MCMF::flow;
+cost = MCMF::cost;
