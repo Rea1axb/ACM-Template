@@ -5,7 +5,7 @@ namespace MaxFlow {
     };
 
     int n, s, t;
-    int cur[MAXMN], dep[MAXN], gap[MAXN];
+    int cur[MAXN], dep[MAXN], gap[MAXN];
     ll flow;
     vector<Edge> G[MAXN];
 
