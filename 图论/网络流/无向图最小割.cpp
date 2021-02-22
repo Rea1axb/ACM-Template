@@ -38,6 +38,7 @@ ll SW(int n) {
                     }
                 }
             }
+            if (maxj == -1) return -1; //图不连通
             vis[node[maxj]] = 1;
             if (i == cnt - 1) {
                 int s = node[pre], t = node[maxj];
@@ -52,4 +53,114 @@ ll SW(int n) {
         }
     }
     return res;
+}
+
+/*
+堆优化版本
+*/
+#include <bits/stdc++.h>
+
+using namespace std;
+typedef long long ll;
+typedef unsigned long long ull;
+const int MAXN = 3e3 + 10;
+const int MAXM = 1e5 + 10;
+const ll INF = 1e18;
+struct edge {
+    int u,v;
+    ll w;
+    int next;
+}e[MAXM * 2];
+int first[MAXN];
+int n, m;
+int idx;
+int link[MAXN];
+void add(int a, int b, ll c) {
+    e[idx].u = a;
+    e[idx].v = b;
+    e[idx].w = c;
+    e[idx].next = first[a];
+    first[a] = idx++;
+}
+
+int f[MAXN];
+void init() {
+    fill(first, first + n + 1, -1);
+    fill(link, link + n + 1, -1);
+    for (int i = 1; i <= n; i++) f[i] = i;
+    idx = 0;
+}
+int find(int x) {
+    if (f[x] == x) return x;
+    return f[x] = find(f[x]);
+}
+void merge(int u, int v) {
+    int p = u;
+    while (link[p] != -1) {
+        p = link[p];
+    }
+    link[p] = v;
+    f[v] = u;
+}
+struct node {
+    int id;
+    ll cost;
+    bool operator < (const node &t) const {
+        return cost < t.cost;
+    }
+};
+int vis[MAXN];
+ll dist[MAXN];
+ll mincut(int cnt, int &s, int &t) {
+    for (int i = 1; i <= n; i++) {
+        vis[i] = 0;
+        dist[i] = 0;
+    }
+    priority_queue<node> q;
+    t = 1;
+    while (--cnt) {
+        vis[s = t] = 1;
+        for (int u = s; u != -1; u = link[u]) {
+            for (int i = first[u]; i != -1; i = e[i].next) {
+                int v = e[i].v;
+                v = find(v);
+                if (!vis[v]) {
+                    q.push({v, dist[v] += e[i].w});
+                }
+            }
+        }
+        t = 0;
+        while (!t) {
+            if (q.empty()) return -1; //图不连通
+            node cur = q.top();
+            q.pop();
+            if (dist[cur.id] == cur.cost)
+                t = cur.id;
+        }
+    }
+    return dist[t];
+}
+ll SW() {
+    ll res = INF;
+    for (int i = n, s, t; i > 1; i--) {
+        res = min(res, mincut(i, s, t));
+        if (res == -1)
+            break;
+        merge(s, t);
+    }
+    return res;
+}
+int main() {
+    while (~scanf("%d%d", &n, &m)) {
+        init();
+        for (int i = 1; i <= m; i++) {
+            int u, v;
+            ll w;
+            scanf("%d%d%lld", &u, &v, &w);
+            add(u, v, w);
+            add(v, u, w);
+        }
+        printf("%lld\n", SW());
+    }
+    return 0;
 }
