@@ -1,0 +1,22 @@
+\paragraph{排列组合}~{}
+\\
+\begin{itemize}
+\item $C_{n}^{m}=\frac{A_{n}^{m}}{m!}=\frac{n!}{m!(n-m)!}$
+\item $C_{n}^{k}=\frac{n}{k}C_{n-1}^{k-1}$
+\item $C_{n}^{k}+C_{n}^{k-1}=C_{n+1}^{k}$
+\item \textbf{多重集的排列数:}多重集是指包含重复元素的广义集合。设$S= \left\{ n_1 \cdot a_1,n_2 \cdot a_2, \cdot \cdot \cdot,n_k \cdot a_k \right\}$，表示由$n_1$个$a_1$,$n_2$个$a_2$,...,$n_k$个$a_k$组成的多重集，$S$的全排列个数为$\frac{n!}{n_1!n_2! \cdot \cdot \cdot n_k!}$
+\item \textbf{多重集的组合数:}从多重集$S$中选择$r(r<n_i,\forall i \in [1, k])$个元素组成一个多重集的方案数为$C_{r+k-1}^{k-1}$，这个问题等价于$x_1+x_2+ \cdot \cdot \cdot +x_k=r$的非负整数解的数目。
+\item \textbf{不相邻的排列:}从$1~n$这$n$个自然数中选$k$个，这$k$个数中任何两个数都不相邻的组合有$C_{n-k+1}^{k}$种。
+\item \textbf{圆排列:}从$n$个不同物品种取$m$个的圆排列有$\frac{n!}{(n-m)! \times m}$种
+\item \textbf{卡特兰数:}$C(n)=\frac{C_{2n}^{n}}{n+1}=C_{2n}^{n}-C_{2n}^{n-1}=\frac{4n-2}{n+1}C(n-1)$
+\end{itemize}
+
+
+\paragraph{树的种类数}~{}
+\\
+\begin{itemize}
+\item \textbf{Cayley公式:}一个完全图有$n^{(n-2)}$棵生成树，换句话说n个节点的带标号的无根树有$n^{(n-2)}$种。
+\item \textbf{广义Cayley定理:}$n$个标号节点形成一个有$k$颗树的森林,使得给定的$k$个点没有两个点属于同一颗树的方案数为$k*n^{(n−k−1)}$。
+\item $n$个相同结点能构建的不同形态的有根二叉树的数量:$f(n)=\frac{C_{2n}^{n}}{n+1}$，即卡特兰数。
+\item $n$个相同结点能构建的不同形态的有根树的个数为$n-1$个节点能构成的不同形态的有根二叉树的数量，即$f(n-1)$。
+\end{itemize}
