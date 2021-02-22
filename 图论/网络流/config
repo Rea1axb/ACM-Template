@@ -1,5 +1,6 @@
 <最大流> <最大流.cpp>
 <最大权闭合子图> <最大权闭合子图.cpp> <最大权闭合子图.tex> <>
+<无向图最小割> <无向图最小割.cpp>
 <mcmf(augement)> <mcmf(augement).cpp>
 <mcmf(dijkstra)> <mcmf(dijkstra).cpp>
 <mcmf(spfa)> <mcmf(spfa).cpp>
