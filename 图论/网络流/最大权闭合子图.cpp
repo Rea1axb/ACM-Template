@@ -1,5 +1,6 @@
 /*
 例题：选择点需要相应成本，如果选择了一些特定的点对，则会获得相应的收益。
+用预流推进求方案有问题
 */
 
 #include <bits/stdc++.h>
@@ -56,6 +57,26 @@ namespace MaxFlow {
         for (int i = 0; i <= n; ++i) cur[i] = dep[i] = gap[i] = 0;
         for (gap[0] = n; dep[s] <= n; flow += dfs(s, INF));
     }
+
+//求解方案
+//    vector<int> ans;
+//    void bfs() {
+//        queue<int> q;
+//        vector<int> vis(n + 1);
+//        q.push(s);
+//        vis[s] = 1;
+//        while (!q.empty()) {
+//            int now = q.front();
+//            q.pop();
+//            for (auto e : G[now]) {
+//                if (!vis[e.v] && e.f) {
+//                    ans.push_back(e.v);
+//                    vis[e.v] = 1;
+//                    q.push(e.v);
+//                }
+//            }
+//        }
+//    }
 }
 int main() {
     int n, m;
