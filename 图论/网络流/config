@@ -1,6 +1,8 @@
 <最大流> <最大流.cpp>
 <最大流(预流推进)> <最大流(预流推进).cpp>
 <最大权闭合子图> <最大权闭合子图.cpp> <最大权闭合子图.tex> <>
+<二分图最小点权覆盖集> <> <二分图最小点权覆盖集.tex> <>
+<二分图最大点权独立集> <> <二分图最大点权独立集.tex> <>
 <无向图最小割> <无向图最小割.cpp>
 <mcmf(augement)> <mcmf(augement).cpp>
 <mcmf(dijkstra)> <mcmf(dijkstra).cpp>
