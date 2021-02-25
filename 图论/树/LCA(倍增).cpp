@@ -4,11 +4,11 @@
 */
 namespace LCA {
     int fa[MAXN][DEG];
-    int deg[MAXN];
+    int dep[MAXN];
 
     void bfs(int root) {
         queue<int> q;
-        deg[root] = 0;
+        dep[root] = 0;
         fa[root][0] = root;
         q.push(root);
         while (!q.empty()) {
@@ -20,7 +20,7 @@ namespace LCA {
             for (int i = first[tmp]; i != -1; i = e[i].next) {
                 int v = e[i].v;
                 if (v == fa[tmp][0]) continue;
-                deg[v] = deg[tmp] + 1;
+                dep[v] = dep[tmp] + 1;
                 fa[v][0] = tmp;
                 q.push(v);
             }
@@ -28,10 +28,10 @@ namespace LCA {
     }
 
     int query(int u, int v) {
-        if (deg[u] > deg[v]) {
+        if (dep[u] > dep[v]) {
             swap(u, v);
         }
-        int hu = deg[u], hv = deg[v];
+        int hu = dep[u], hv = dep[v];
         int tu = u, tv = v;
         for (int k = hv - hu, i = 0; k; k >>= 1, i++) {
             if (k & 1) {
