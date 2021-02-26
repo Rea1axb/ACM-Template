@@ -110,3 +110,6 @@ MCMF::solve(s, t);
 
 flow = MCMF::flow;
 cost = MCMF::cost;
+
+//反向边有流量的正向边为答案中有流量的边
+//判断一条边是否是正向边可以用边的编号的奇偶性判断

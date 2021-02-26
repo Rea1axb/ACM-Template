@@ -57,3 +57,6 @@ MaxFlow::add_edge(u, v, f);
 MaxFlow::solve(s, t);
 
 flow = MCMF::flow;
+
+//反向边有流量的正向边为答案中有流量的边
+//判断一条边是否是正向边可以在边的结构体中增加一个变量flag，加边时标明
