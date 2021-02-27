@@ -84,7 +84,7 @@ namespace MaxFlow {
 MaxFlow::init(n);
 
 //建图
-MaxFlow::add_edge(u, v, f);
+MaxFlow::add(u, v, f);
 
 //计算答案
 MaxFlow::solve(s, t);

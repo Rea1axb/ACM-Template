@@ -9,7 +9,7 @@ namespace MaxFlow {
     ll flow;
     vector<Edge> G[MAXN];
 
-    void add_edge(int u, int v, ll f) {
+    void add(int u, int v, ll f) {
         G[u].push_back({v, (int) G[v].size(), f});
         G[v].push_back({u, (int) G[u].size() - 1, 0});
     }
@@ -51,7 +51,7 @@ namespace MaxFlow {
 MaxFlow::init(n);
 
 //建图
-MaxFlow::add_edge(u, v, f);
+MaxFlow::add(u, v, f);
 
 //计算答案
 MaxFlow::solve(s, t);
