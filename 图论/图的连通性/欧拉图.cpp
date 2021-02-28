@@ -2,7 +2,7 @@
 
 //无向图
 vector<int> ans;
-visedge[MAXM * 2];
+int visedge[MAXM * 2];
 void dfs(int u) {
     for (int i = first[u]; i != -1; i = e[i].next) {
         if (visedge[i]) continue;
@@ -14,7 +14,7 @@ void dfs(int u) {
 
 //有向图
 vector<int> ans;
-visedge[MAXM];
+int visedge[MAXM];
 void dfs(int u) {
     for (int i = first[u]; i != -1; i = e[i].next) {
         if (visedge[i]) continue;
