@@ -78,6 +78,30 @@ namespace MaxFlow {
             flow += dfs(s, INF);
         }
     }
+//    判断最大流的唯一性
+//    int vis[MAXN];
+//    int judge(int u, int fa, int rt) {
+//        vis[u] = 1;
+//        for (int i = first[u]; i != -1; i = e[i].next) {
+//            int v = e[i].v;
+//            if (v == fa || !e[i].f) continue;
+//            if (v == rt) return 0;
+//            if (!vis[v]) {
+//                int ok = judge(v, u, rt);
+//                if (!ok) return 0;
+//            }
+//        }
+//        return 1;
+//    }
+//
+//    bool is_unique() {
+//        for (int i = 1; i <= n; i++) {
+//            fill(vis, vis + n + 1, 0);
+//            int ok = judge(i, -1, i);
+//            if (!ok) return 0;
+//        }
+//        return 1;
+//    }
 }
 
 //初始化
