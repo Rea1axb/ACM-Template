@@ -54,6 +54,26 @@ ll SW(int n) {
     }
     return res;
 }
+int main() {
+    int n, m;
+    while (~scanf("%d%d", &n, &m)) {
+        for (int i = 1; i <= n; i++) {
+            for (int j = 1; j <= n; j++) {
+                G[i][j] = 0;
+            }
+        }
+        for (int i = 1; i <= m; i++) {
+            int u, v;
+            ll w;
+            scanf("%d%d%lld", &u, &v, &w);
+            u++, v++;
+            G[u][v] += w;
+            G[v][u] += w;
+        }
+        printf("%lld\n", SW(n));
+    }
+    return 0;
+}
 
 /*
 堆优化版本
