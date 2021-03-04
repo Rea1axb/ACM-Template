@@ -1,0 +1,55 @@
+\paragraph{定义}~{}
+\\
+定义一个无向图$G=(V, E)$的密度$D=\frac{|E|}{|V|}$。\\
+给出一个无向图$G=(V, E)$，其具有最大密度的子图$G'=(V', E')$称为最大密度子图，即最大化$D'=\frac{|E'|}{|V'|}$。
+
+\paragraph{解法}~{}
+\\
+二分答案$g$，下界为$\frac{1}{n}$，上界为$m$，任意两个不同密度的子图$G1$，$G2$的密度差为$\frac{m_1}{n_1} - \frac{m_2}{n_2} = \frac{m_1n_2-m_2n_1}{n_1n_2} \geq \frac{1}{n_1n_2}  \geq \frac{1}{n^2}$。\\
+因此若对于无向图$G$中有一个密度为$D$的子图$G‘$，且不存在一个密度超过$D+ \frac{1}{n^2}$的子图，则$G'$为最大密度子图。\\
+有两种算法进行检查:\\
+\textbf{算法1:最大权闭合子图}\\
+二分值为$g$时，需求解：
+\begin{center}$h(g)= \max (|E'|-g|V'|)$\end{center}
+问题就转化成了每条边的收益是，每个点的成本是$g$，选择一条边就必须要选择边两端的点，就是最大权闭合子图问题。\\
+\textbf{算法2:导出子图最小割}\\
+换一个角度，将边集对点集的限制转成点集对边集的限制，显然对于点集$V'$，$E'$取$V'$的导出子图的边集（端点都在$V'$的所有边的集合），比其他$E'$其他方案，在$h(g)$的目标函数的意义下更优。对于点集$V'$，$E'= \frac{\sum_{v \in V'}d_v - C[V', \overline{V'}]}{2}$，其中$d_v$表示$v$的度数，$C[V', \overline{V'}]$表示所有与$V'$关联但不是$E'$中的边的数量，即$V'$与补集$\overline{V'}$之间的边数。\\
+将最大化问题转化成最小化：
+\begin{center}$-h(g)=\min (g|V'|-|E'|)= \min \frac{\sum_{v \in V'}(2g-d_v) + C[V', \overline{V'}]}{2}$\end{center}
+因为最小割只能接受非负的流量，所以把所有表示点权的边容量，加上一个数$U$（$U=m已经足够大了$），保证非负。\\
+\textbf{构图:}\\
+$
+\begin{cases}
+c(u, v)=1 & (u, v) \in E \\
+c(s, v)=U & v \in V\\
+c(v, t)=U+2g-d_v & v \in V\\
+U=m
+\end{cases}
+$\\
+$h(g)=\frac{U \times n - mincut}{2}$
+
+\paragraph{向带边权图的推广}~{}
+\\
+\textbf{构图:}\\
+$
+\begin{cases}
+c(u, v)=w_e & (u, v) \in E \\
+c(s, v)=U & v \in V\\
+c(v, t)=U+2g-d_v & v \in V\\
+U=\sum_{e \in E}w_e
+\end{cases}
+$\\
+$h(g)=\frac{U \times n - mincut}{2}$，由于密度的定义的推广，需要重新规定二分查找的精度。
+
+\paragraph{向点边均带权图的推广}~{}
+\\
+\textbf{构图:}\\
+$
+\begin{cases}
+c(u, v)=w_e & (u, v) \in E \\
+c(s, v)=U & v \in V\\
+c(v, t)=U+2g-d_v-2p_v & v \in V\\
+U=2 \sum_{v \in V}|p_v|+\sum_{e \in E}w_e
+\end{cases}
+$\\
+$h(g)=\frac{U \times n - mincut}{2}$，由于密度的定义的推广，需要重新规定二分查找的精度。
