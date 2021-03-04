@@ -102,7 +102,7 @@ namespace MaxFlow {
         return 1;
     }
 
-    bool mincost_unique() {
+    bool mincut_unique() {
         queue<int> q1, q2;
         vector<int> vis(n + 1);
         q1.push(s);
@@ -156,4 +156,4 @@ flow = MCMF::flow;
 maxflow_unique = MaxFlow::maxflow_unique();
 
 //最小割唯一性（如果在参与网络中存在既不属于S，也不属于T的点，则最小割不唯一）
-mincost_unique = MaxFlow::mincost_unique();
+mincut_unique = MaxFlow::mincut_unique();
