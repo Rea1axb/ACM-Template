@@ -18,7 +18,7 @@ int insert(vector<bi> &vis, bi t) {
     for (int i = MAXL; i >= 0; i--) {
         if (!t[i])
             continue;
-        if (!vis[i]) {
+        if (vis[i] == 0) {
             vis[i] = t;
             return 1;
         } else {
