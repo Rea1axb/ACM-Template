@@ -6,7 +6,7 @@ namespace Treap {
         int sz; //子树大小
         int rnd;
         int tag; //标记,以区间翻转为例
-    }Tree[MAXN];
+    }Tree[MAXN * 40];
 
     int cnt;
     int root[MAXN], x, y, z;
