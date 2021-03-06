@@ -74,7 +74,7 @@ int main() {
     }
     sort(lisan.begin(), lisan.end());
     lisan.erase(unique(lisan.begin(), lisan.end()), lisan.end());
-    for (int i = 1;i  <= n; i++) {
+    for (int i = 1; i <= n; i++) {
         update(1, n, root[i], root[i - 1], getid(val[i]));
     }
     for (int i = 1; i <= m; i++) {
