@@ -81,7 +81,7 @@ int main() {
         int l, r, k;
         scanf("%d%d%d", &l, &r, &k);
         int posk = getid(k);
-        if (lisan[posk - 1] != k) posk--; // <= k
+        if (lisan[posk - 1] > k) posk--; // <= k
         int ans = ask(l, r, posk);
         printf("%d\n", ans);
     }
