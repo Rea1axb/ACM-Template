@@ -14,7 +14,7 @@ namespace LCA{
         int id;
         int v;
     };
-    vector<node> q[MAXM];
+    vector<node> q[MAXQ];
     int ans[MAXQ];
 
     void init(int _n, int _q) {

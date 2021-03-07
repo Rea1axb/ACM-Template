@@ -68,6 +68,6 @@ namespace LCA {
 };
 LCA::st_init(); //最开始初始化，before T--
 LCA::init(n);
-LCA::dfs(1, 0, 0);
+LCA::dfs(root, 0, 0);
 LCA::solve();
 ans = LCA::query(u, v);
