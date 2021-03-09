@@ -4,6 +4,8 @@
 从u走到v的过程中一定会经过lca(u,v)，但不会经过lca(u,v)的祖先。
 因此，从u走到v的过程中经过的欧拉序最小的结点就是lca(u,v)
 LCA问题可以在O(n)的时间转化为等规模的RMQ问题。
+
+求多个结点的LCA时，相当于求欧拉序最小、最大的两个结点的LCA
 */
 namespace LCA {
     int seq[MAXN * 2];//记录欧拉序对应的点的编号
@@ -68,6 +70,6 @@ namespace LCA {
 };
 LCA::st_init(); //最开始初始化，before T--
 LCA::init(n);
-LCA::dfs(root, 0, 0);
+LCA::dfs(rootcd , 0, 0);
 LCA::solve();
 ans = LCA::query(u, v);
