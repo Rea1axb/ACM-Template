@@ -96,6 +96,7 @@ int main() {
     }
     BIT::init(n);
     sort(q + 1, q + m + 1, cmp_block);
+    sum = 0;
     for (int i = 1, l = 1, r = 0; i <= m; i++) {
         if (q[i].l == q[i].r) {
             q[i].ans = 0;

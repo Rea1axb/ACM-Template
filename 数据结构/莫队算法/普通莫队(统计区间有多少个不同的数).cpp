@@ -46,6 +46,7 @@ int main() {
     }
     block = sqrt(n);
     sort(q + 1, q + m + 1, cmp_block);
+    sum = 0;
     for (int i = 1, l = 1, r = 0; i <= m; i++) {
         while (l > q[i].l) add(color[--l]);
         while (r < q[i].r) add(color[++r]);

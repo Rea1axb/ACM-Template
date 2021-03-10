@@ -71,6 +71,7 @@ int main() {
     }
     block = pow(n, 2.0/3.0);
     sort(q + 1, q + querycnt + 1, cmp_block);
+    sum = 0;
     for (int i = 1, l = 1, r = 0, t = 0; i <= querycnt; i++) {
         while (l > q[i].l) add(color[--l]);
         while (r < q[i].r) add(color[++r]);
