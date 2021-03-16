@@ -14,28 +14,35 @@ A-B=C 转化为 A-B>=C 和 A-B<=C
 bool inq[MAXN];
 ll dist[MAXN];
 int cnt[MAXN];
+//int stk[MAXN * 2]; 用栈取代队列相当于用dfs，找环更快
 int spfa(int s) {
     for (int i = 0; i <= n; i++) {
-        dist[i] = INF; //dist[i] = -INF;
+        dist[i] = INF; //dist[i] = -INF;最长路
         inq[i] = 0;
         cnt[i] = 0;
     }
     dist[s] = 0;
     queue<int> q;
+    //int sum = 0; 所有进入队列的总数量
     q.push(s);
+    cnt[s]++;
+    //int top = 0;
+    //stk[++top] = s;
     while (!q.empty()) {
         int cur = q.front();
         q.pop();
         inq[cur] = 0;
-        cnt[cur]++;
-        if (cnt[cur] > n) return 0; //因为加入了超级源点，图中点的数量是n+1
+        //sum++;
+        //if (sum > 2e7) return 0; 数值大小根据数据规模和时限调整
         for (int i = first[cur]; i != -1; i = e[i].next) {
             int v = e[i].v;
             ll w = e[i].w;
-            if (dist[v] > dist[cur] + w) { //dist[v] < dist[cur] + w
+            if (dist[v] > dist[cur] + w) { //dist[v] < dist[cur] + w 最长路
                 dist[v] = dist[cur] + w;
                 if (!inq[v]) {
                     inq[v] = 1;
+                    cnt[cur]++;
+                    if (cnt[cur] > n) return 0; //因为加入了超级源点，图中点的数量是n+1
                     q.push(v);
                 }
             }
