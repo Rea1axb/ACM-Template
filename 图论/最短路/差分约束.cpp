@@ -16,7 +16,7 @@ ll dist[MAXN];
 int cnt[MAXN];
 int spfa(int s) {
     for (int i = 0; i <= n; i++) {
-        dist[i] = INF;
+        dist[i] = INF; //dist[i] = -INF;
         inq[i] = 0;
         cnt[i] = 0;
     }
@@ -32,7 +32,7 @@ int spfa(int s) {
         for (int i = first[cur]; i != -1; i = e[i].next) {
             int v = e[i].v;
             ll w = e[i].w;
-            if (dist[v] > dist[cur] + w) {
+            if (dist[v] > dist[cur] + w) { //dist[v] < dist[cur] + w
                 dist[v] = dist[cur] + w;
                 if (!inq[v]) {
                     inq[v] = 1;
