@@ -1,0 +1,54 @@
+\paragraph{判定}~{}
+\\
+在每个变量仅有两种取值的问题中,我们可以将变量 $x$ 拆解为 $x=1$ 和 $x=0$ \\
+对变量关系建图，有向边表示可推导得到 \\
+求强联通分量，若 $x=1$ 和 $x=0$ 位于同一个强连通分量内，则无解\\
+若没有这种情况出现，一定有解\\
+\paragraph{构图}~{}
+\\
+\textbf{定义}\\
+$x$表示$X=0$,$x+n$表示$X=1$\\
+\textbf{1. X AND Y == 0}\\
+当其中一个为1时，另一个一定为0
+\begin{itemize}
+\item $x+n->y$
+\item $y+n->x$
+\end{itemize}
+\textbf{2. X AND Y == 1}\\
+二者都一定为1
+\begin{itemize}
+\item $x->x+n$
+\item $y->y+n$
+\end{itemize}
+\textbf{3. X OR Y == 0}\\
+二者都一定为0
+\begin{itemize}
+\item $x+n->x$
+\item $y+n->y$
+\end{itemize}
+\textbf{4. X OR Y == 1}\\
+当其中一个为0时，另一个一定为1\\
+\begin{itemize}
+\item $x->y+n$
+\item $y->x+n$
+\end{itemize}
+\textbf{5. X XOR Y == 0}\\
+二者状态相同
+\begin{itemize}
+\item $x->y$
+\item $y->x$
+\item $x+n->y+n$
+\item $y+n->x+n$
+\end{itemize}
+\textbf{6. X XOR Y == 1}\\
+二者状态不同
+\begin{itemize}
+\item $x->y+n$
+\item $y->x+n$
+\item $x+n->y$
+\item $y+n->x$
+\end{itemize}
+
+\paragraph{方案}~{}
+\\
+tarjan缩点后，优先选择所属连通块编号小的节点。即对于$x$和$x+n$选择$resnum$小的点。
