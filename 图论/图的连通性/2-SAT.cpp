@@ -117,3 +117,51 @@ int main() {
     Tarjan::solve();
     return 0;
 }
+
+/*输出字典序最小的方案，爆搜，O(n*m)*/
+namespace TwoSAT {
+    int vis[MAXN];
+    int stk[MAXN];
+    int top;
+    int n;
+    vector<int> ans;
+    bool dfs(int u) {
+        if (vis[u > n / 2 ? u - n / 2 : u + n / 2]) return 0;
+        if (vis[u]) return 1;
+        stk[++top] = u;
+        vis[u] = 1;
+        for (int i = first[u]; i != -1; i = e[i].next) {
+            int v = e[i].v;
+            if (!dfs(v)) return 0;
+        }
+        return 1;
+    }
+    void init(int _n) {
+        n = _n;
+        ans.clear();
+    }
+    bool solve() {
+        fill(vis, vis + n + 1, 0);
+        for (int i = 1; i <= n / 2; i++) {
+            if (!vis[i] && !vis[i + n / 2]) {
+                top = 0;
+                if (!dfs(i)) {
+                    while (top) vis[stk[top--]] = 0;
+                    if (!dfs(i + n / 2)) return 0;
+                }
+            }
+        }
+        return 1;
+    }
+    void print() {
+        for (int i = 1; i <= n / 2; i++) {
+            if (vis[i]) ans.push_back(i);
+            else ans.push_back(i + n / 2);
+        }
+    }
+}
+TwoSAT::init(n * 2);
+ok = TwoSAT::solve();
+if (ok) TwoSAT::print();
+for (auto o : TwoSAT::ans)
+    printf("%d\n", o);
