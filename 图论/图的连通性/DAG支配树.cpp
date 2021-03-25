@@ -74,12 +74,14 @@ namespace LCA {
     int dep[MAXN];
     vector<int> G[MAXN];
     int sz[MAXN];
-    void init(int root) {
+    void init(int root, int _n) {
         dep[root] = 0;
         fa[root][0] = root;
         for (int i = 1; i < DEG; i++) {
             fa[root][i] = fa[fa[root][i - 1]][i - 1];
         }
+        for (int i = 1; i <= _n; i++)
+            G[i].clear();
     }
     void add(int u, int v) { //边加点边更新倍增信息
         dep[v] = dep[u] + 1;
@@ -149,7 +151,7 @@ int main() {
     //DAG建立支配树
     queue<int> q;
     q.push(s);
-    LCA::init(s);
+    LCA::init(s, n);
     while (!q.empty()) {
         int cur = q.front();
         q.pop();
