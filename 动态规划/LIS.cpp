@@ -5,7 +5,7 @@ for (int i = 2; i <= n; ++i) {
     if (a[i] > ans[len]) {
         ans[++len] = a[i];
     } else {
-        int pos = lower_bound(ans, ans + len, a[i]) - ans;
+        int pos = lower_bound(ans + 1, ans + len + 1, a[i]) - ans;
         ans[pos] = a[i];
     }
 }
