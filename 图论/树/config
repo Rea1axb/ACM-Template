@@ -1,5 +1,6 @@
 <最小生成树(Boruvka)> <最小生成树(Boruvka).cpp>
 <XOR-MST> <XOR-MST.cpp>
+<最小树形图> <最小树形图.cpp>
 <树的重心> <树的重心.cpp>
 <树的直径> <树的直径.cpp>
 <树上倍增> <树上倍增.cpp>
