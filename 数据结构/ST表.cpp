@@ -3,7 +3,7 @@
 只能处理可重复贡献问题，如区间最值、区间按位与、区间按位或、区间GCD等
 预处理时间 O(nlogn)
 查询时间 O(1)
-处理区间GCD的查询时间为O(n(logw+logx)),w为值域
+处理区间GCD的预处理时间为O(n(logw+logx)),查询时间为O(logw)w为值域
 */
 namespace ST {
     ll f[MAXN][DEG];
