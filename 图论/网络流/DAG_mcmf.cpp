@@ -86,12 +86,15 @@ namespace MCMF {
         }
         if (dist[t] == INF)
             return false;
+        for (int i = 0; i <= n; i++) {
+            H[i] += dist[i];
+        }
         ll f = INF;
         for (int v = t; v != s; v = path_v[v]) {
             f = min(f, e[path_e[v]].f);
         }
         flow += f;
-        cost += f * (H[t] + dist[t]);
+        cost += f * H[t];
         //mincost = min(mincost, cost); //最小费用可行流
         for (int v = t; v != s; v = path_v[v]) {
             e[path_e[v]].f -= f;
