@@ -1,0 +1,21 @@
+\paragraph{一般形式}~{}
+\\
+\begin{center}$Minimize\ \ \lambda = f(x) = \frac{a(x)}{b(x)} (x \in S)$\end{center}
+\begin{center}$\forall x \in S, b(x)>0$\end{center}
+解向量$x$在解空间$S$内，$a(x)$和$b(x)$都是连续的实值函数。
+
+\paragraph{解法}~{}
+\\
+解决分数规划问题一般都是二分答案，再验证答案的最优性。\\
+构造一个新函数$g(\lambda)$:
+\begin{center}$g(\lambda)=\min_{x \in S}{a(x)- \lambda \times b(x)}$\end{center}
+设$\lambda ^{*}$为该规划的最优解，则
+\begin{center}
+$
+\begin{cases}
+g(\lambda)=0 & \lambda = \lambda ^{*}\\
+g(\lambda)<0 & \lambda > \lambda ^{*}\\
+g(\lambda)>0 & \lambda < \lambda ^{*}
+\end{cases}
+$
+\end{center}
