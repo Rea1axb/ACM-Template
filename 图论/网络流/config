@@ -10,7 +10,7 @@
 <mcmf(augement)> <mcmf(augement).cpp>
 <mcmf(dijkstra)> <mcmf(dijkstra).cpp>
 <mcmf(spfa)> <mcmf(spfa).cpp>
-<DAG_mcmf> <DAG_mcmf.cpp>
+<DAGmcmf> <DAGmcmf.cpp>
 <有上下界的网络流> <> <有上下界的网络流.tex> <>
 <无汇源有上下界可行流> <无汇源有上下界可行流.cpp>
 <有汇源有上下界最大流> <有汇源有上下界最大流.cpp>
