@@ -96,7 +96,7 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 const int MAXN = 1e5 + 10;
-const ll MINL =
+const ll MINL = 1;
 const ll MAXR =
 struct Tree {
     ll l, r;

@@ -1,3 +1,7 @@
+/*
+也可以用nxt[i]表示下一个val[i]出现的位置，[L,R]内数字种类数量，就是[L,R]内nxt[i]大于R的数量，
+就能转为区间大于等于k的数的个数问题
+*/
 #include <bits/stdc++.h>
 
 using namespace std;
